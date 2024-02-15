@@ -1,0 +1,22 @@
+body{
+    background-color: #F5F7F8;
+}
+
+section{
+    margin-block-end: 80px;
+}
+
+.card:hover{
+    transition: transform 0.5s ease;
+    transform: scale(1.015, 1.015);
+}
+
+.carousel > img{
+    max-height: 650px;
+    object-fit: cover;
+}
+
+.card-img-custom-brand{
+    max-width: 286px;
+    max-height: 180px;
+}
