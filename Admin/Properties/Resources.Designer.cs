@@ -63,6 +63,36 @@ namespace Login.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eye_line {
+            get {
+                object obj = ResourceManager.GetObject("eye-line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eye_off_line {
+            get {
+                object obj = ResourceManager.GetObject("eye-off-line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap id_card_line {
+            get {
+                object obj = ResourceManager.GetObject("id-card-line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lock_password_fill {
             get {
                 object obj = ResourceManager.GetObject("lock-password-fill", resourceCulture);
@@ -76,6 +106,26 @@ namespace Login.Properties {
         internal static System.Drawing.Bitmap Logo_pic {
             get {
                 object obj = ResourceManager.GetObject("Logo_pic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap luggage_cart_line {
+            get {
+                object obj = ResourceManager.GetObject("luggage-cart-line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap store_3_line {
+            get {
+                object obj = ResourceManager.GetObject("store-3-line", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -17,7 +17,7 @@ import mockup2 from '../../img/img/Mockup2.jpg';
 import mockup3 from '../../img/img/Mockup3.jpg';
 
 //
-import "./home.css"
+import "./home.scss"
 
 
 

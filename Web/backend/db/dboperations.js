@@ -27,20 +27,28 @@ async function selectProductPerPage(pageNo){
 
 //Lekéri a szürt adatokat
 async function select_search_data(fil) {
+    console.log(fil);
     return new Promise((resolve, reject) => {
         let whereQuery = "SELECT base.name, base.price, brand.brand_name, base.img FROM base JOIN brand ON base.brand = brand.brand_id WHERE ";
         let values = [];
 
         if (fil.keyword) {
             whereQuery += "name LIKE ? ";
-            values.push('%' + fil.keyword + '%');
+            values.push('%'+fil.keyword+'%');
         }
         if (fil.brand) {
-            whereQuery += "brand_name LIKE ? ";
             if (fil.keyword) {
                 whereQuery += "AND ";
             }
-            values.push('%' + fil.brand + '%');
+            whereQuery += "brand_name LIKE ? ";
+            values.push(fil.brand);
+        }
+        if(fil.max){
+            if(fil.keyword || fil.brand){
+                whereQuery +="and ";
+            }
+            whereQuery += "price <= ? ";
+            values.push(fil.max)
         }
 
         console.log(whereQuery);
@@ -59,7 +67,7 @@ async function select_search_data(fil) {
 //Login
 async function select_user(email, pass) {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM mobil.users WHERE mobil.users.user_email = ? AND mobil.users.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
+        pool.query('SELECT mobil.users.user_name FROM mobil.users WHERE mobil.users.user_email = ? AND mobil.users.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
                 if (error) {
                     reject(error);
                 } else {

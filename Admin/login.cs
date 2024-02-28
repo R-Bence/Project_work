@@ -2,6 +2,8 @@
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Drawing;
+
 
 namespace Login
 {
@@ -77,6 +79,7 @@ namespace Login
 
         private void text_Onpress(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
                 if (txt_user_pass.Text.Length == 0)
@@ -90,10 +93,58 @@ namespace Login
             }
 
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        Point start = new Point(0, 0);
+        bool drag = false;
+        private void panel_header_MouseDown(object sender, MouseEventArgs e)
         {
+            drag = true;
+            start = new Point(e.X, e.Y);
+        }
 
+        private void panel_header_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drag)
+            {
+                Point p = PointToScreen(e.Location);
+                this.Location = new Point(p.X - start.X, p.Y - start.Y);
+            }
+        }
+
+        private void panel_header_MouseUp(object sender, MouseEventArgs e)
+        {
+            drag = false;
+        }
+
+        private void show_eye(object sender, EventArgs e)
+        {
+            eyes.Image = Login.Properties.Resources.eye_line;
+            eyes.Visible = true;
+        }
+        bool eyechange = false;
+        private void eyes_Click(object sender, EventArgs e)
+        {
+            if (eyechange == true)
+            {
+                eyes.Image = Login.Properties.Resources.eye_line;
+                eyechange = false;
+                txt_user_pass.PasswordChar = '*';
+            }
+            else if (eyechange == false)
+            {
+                eyes.Image = Login.Properties.Resources.eye_off_line;
+                eyechange = true;
+                txt_user_pass.PasswordChar = '\0';
+            }
+        }
+
+
+        private void hide_eye(object sender, EventArgs e)
+        {
+            if(txt_user_pass.Text == "")
+            {
+                eyes.Image = null;
+                eyes.Visible = false;
+            }
         }
     }
 }

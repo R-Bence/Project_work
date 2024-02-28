@@ -115,8 +115,23 @@
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="mobilDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mobilDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="osszes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>osszes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>users.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +159,28 @@
     <None Include="asd.xss">
       <DependentUpon>asd.xsd</DependentUpon>
     </None>
+    <None Include="mobilDataSet.xsc">
+      <DependentUpon>mobilDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="mobilDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mobilDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mobilDataSet.xss">
+      <DependentUpon>mobilDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="osszes.xsc">
+      <DependentUpon>osszes.xsd</DependentUpon>
+    </None>
+    <None Include="osszes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>osszes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="osszes.xss">
+      <DependentUpon>osszes.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,6 +191,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="users.xsc">
+      <DependentUpon>users.xsd</DependentUpon>
+    </None>
+    <None Include="users.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>users.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="users.xss">
+      <DependentUpon>users.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -166,6 +214,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\Logo_pic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\id-card-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\luggage-cart-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\store-3-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\eye-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\eye-off-line.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

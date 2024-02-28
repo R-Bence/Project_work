@@ -8,14 +8,14 @@ const get = (brand) => {
     return http.get(`/products/${brand}`);
 }
 
-const getSearch = (fil) =>{
-    return http.post(`/products/search?${fil}`)
+const postSearch = (fil) =>{
+    return http.post(`/products/search`,fil)
 }
 
 const Pro_service = {
     getAll,
     get,
-    getSearch,
+    postSearch,
 };
 
 export default Pro_service;
