@@ -10,35 +10,40 @@ namespace Login
     public partial class login : Form
     {
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=guest;pwd=guest123@");
-
+        string role = "";
+        string name = "";
         public login()
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            string user_name = txt_user_name.Text;
+            string user_email = txt_user_email.Text;
             string user_pass = txt_user_pass.Text;
 
             try
             {
                 conn.Open();
 
-                string login_query = "SELECT users.user_name, users.user_pass, user_type.type_name FROM users INNER JOIN user_type ON users.user_type = user_type.type_id WHERE users.user_name = @UserName AND users.user_pass = SHA2(@UserPass,256)";
+                string login_query = "SELECT users.user_name, users.user_email, users.user_pass, user_type.type_name FROM users INNER JOIN user_type ON users.user_type = user_type.type_id WHERE users.user_email = @user_email AND users.user_pass = SHA2(@user_pass,256) and (user_type.type_name like 'owner' or user_type.type_name like 'admin')";
 
                 MySqlCommand cmd = new MySqlCommand(login_query, conn);
-                cmd.Parameters.AddWithValue("@UserName", user_name);
-                cmd.Parameters.AddWithValue("@UserPass", user_pass);
+                cmd.Parameters.AddWithValue("@user_email", user_email);
+                cmd.Parameters.AddWithValue("@user_pass", user_pass);
 
                 MySqlDataAdapter SDA = new MySqlDataAdapter(cmd);
 
                 DataTable dtable = new DataTable();
                 SDA.Fill(dtable);
+                DataRow row = dtable.Rows[0];
+                name = row["user_name"].ToString();
+                role = row["type_name"].ToString();
 
                 if (dtable.Rows.Count > 0)
                 {
                     mainForm mainForm = new mainForm();
+                    mainForm.return_role = role;
+                    mainForm.return_name = name;
                     mainForm.Show();
                     this.Hide();
                 }
@@ -59,7 +64,7 @@ namespace Login
 
         private void button2_Click(object sender, EventArgs e)
         {
-            txt_user_name.Text = "";
+            txt_user_email.Text = "";
             txt_user_pass.Text = "";
         }
 

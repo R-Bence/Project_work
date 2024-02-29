@@ -16,7 +16,8 @@ import Footer from './components/footer/footer';
 import Login from './components/Reg_Log/login'
 // egyéb components
 import NoPage from './components/notFound';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Termekek from './components/products/product';
 
 function App() {
   /*
@@ -31,13 +32,34 @@ function App() {
   <Route path='/auth/login' element={<Login/>} isLogged={loggedIn} setIslogged={set_loggedIn}/>
   
   */
+
+  const [cart, set_cart] = useState([]);
+/*
+  const add_To_cart = (termekek) =>{
+    const vanilyen = cart.find(item => item.products.id === termekek.id);
+
+    if(vanilyen){
+      const ujKosar = cart.map(item =>{
+        item.products.id === termekek.id ? {
+          ...item, quantity: item.quantity+1
+        } 
+        : item
+      set_cart(ujKosar);
+    })}
+     
+    else{
+      set_cart(...cart, {products:termekek, quantity:1})
+    }
+    set
+  }
+*/
   return (<>
     <Router>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Outlet/>}>
             <Route index element={<Home/>} />
-            <Route path='/products' element={<Products/>} />
+            <Route path='/products' element={<Products add_To_cart={add_to_cart}/>} />
             <Route path='/about' element={<About/>}/>
             <Route path='/products/search' element={<Result/>}/>
             <Route path='*' element={<NoPage/>}/>

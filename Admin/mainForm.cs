@@ -15,10 +15,34 @@ namespace Login
     public partial class mainForm : Form
     {
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=web_admin;pwd=webadmin123@");
-
+        public string return_role { get; set; }
+        public string return_name { get; set; }
+        string table_name = "";
+        string fil = "";
         public mainForm()
         {
             InitializeComponent();
+        }
+
+        private void ReloadDataGridView()
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand($"SELECT * FROM {table_name}", conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba történt az adatok újratöltése közben: {ex.Message}");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void user_fill()
@@ -26,6 +50,7 @@ namespace Login
             try
             {
                 conn.Open();
+                table_name = "users";
                 MySqlCommand cmd = new MySqlCommand($"Select * from users", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
@@ -47,7 +72,8 @@ namespace Login
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand($"Select * from getbrand", conn);
+                table_name = "base";
+                MySqlCommand cmd = new MySqlCommand($"Select * from base", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -68,6 +94,7 @@ namespace Login
             try
             {
                 conn.Open();
+                table_name = "rendel";
                 MySqlCommand cmd = new MySqlCommand($"SELECT * FROM mobil.rendel;", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
@@ -116,26 +143,57 @@ namespace Login
 
         }
 
+        private void filters()
+        {
+            fils_combo_box.Text = "";
+            fils_combo_box.Items.Clear();
+            string query = $"SELECT column_name FROM information_schema.columns WHERE table_schema = 'mobil' AND table_name = '{table_name}'";
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        fils_combo_box.Items.Add(reader.GetString("column_name"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba történt az adatbázishoz való kapcsolódás közben: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
 
         private void mainForm_Load(object sender, EventArgs e)
         {
             user_fill();
             tables();
+            filters();
+            name_txt_label.Text = "Üdvözlöm: " + return_name;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             user_fill();
+            filters();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             products_fill();
+            filters();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             order_fill();
+            filters();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,6 +203,7 @@ namespace Login
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand($"Select * from {table_name}", conn);
+                this.table_name =  table_name;
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -157,6 +216,7 @@ namespace Login
             finally
             {
                 conn.Close();
+                filters();
             }
         }
 
@@ -214,9 +274,77 @@ namespace Login
             drag = false;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        //AI
+        private void CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            int rowIndex = e.RowIndex;
 
+            object newValue = dataGridView1.Rows[rowIndex].Cells[e.ColumnIndex].Value;
+
+            var dataSource = dataGridView1.DataSource;
+
+            // Ellenőrzés az "id" szóra
+            if (!dataGridView1.Columns[e.ColumnIndex].Name.ToLower().Contains("id"))
+            {
+                string updateQuery = $"UPDATE {table_name} SET {dataGridView1.Columns[e.ColumnIndex].Name} = @NewValue WHERE user_id = @RowID";
+
+                using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn))
+                {
+                    updateCommand.Parameters.AddWithValue("@NewValue", newValue);
+                    updateCommand.Parameters.AddWithValue("@RowID", dataGridView1.Rows[rowIndex].Cells["user_id"].Value);
+
+                    try
+                    {
+                        conn.Open();
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Hiba történt az adatbázis frissítése közben: {ex.Message}");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                        ReloadDataGridView();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nem lehet módosítani az 'id' oszlopot.");
+                ReloadDataGridView();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text != "")
+            {
+                string Search_params = textBox1.Text;
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand($"Select * from {table_name} where {fil} like '%{Search_params}%'", conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt: {ex.Message}");
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        private void fils_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fil = fils_combo_box.Text;
         }
     }
 }

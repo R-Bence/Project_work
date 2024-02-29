@@ -123,6 +123,16 @@ namespace Login.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_2_line {
+            get {
+                object obj = ResourceManager.GetObject("search-2-line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap store_3_line {
             get {
                 object obj = ResourceManager.GetObject("store-3-line", resourceCulture);

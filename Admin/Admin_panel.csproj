@@ -230,5 +230,8 @@
   <ItemGroup>
     <None Include="img\eye-off-line.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="img\search-2-line.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

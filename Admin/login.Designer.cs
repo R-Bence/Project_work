@@ -29,7 +29,7 @@ namespace Login
         /// </summary>
         private void InitializeComponent()
         {
-            this.txt_user_name = new System.Windows.Forms.TextBox();
+            this.txt_user_email = new System.Windows.Forms.TextBox();
             this.txt_user_pass = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -38,30 +38,30 @@ namespace Login
             this.close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.eyes = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.eyes = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
-            // txt_user_name
+            // txt_user_email
             // 
-            this.txt_user_name.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_user_name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_user_name.Font = new System.Drawing.Font("Century Schoolbook", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txt_user_name.Location = new System.Drawing.Point(112, 267);
-            this.txt_user_name.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_user_name.Name = "txt_user_name";
-            this.txt_user_name.Size = new System.Drawing.Size(195, 31);
-            this.txt_user_name.TabIndex = 1;
-            this.txt_user_name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_Onpress);
+            this.txt_user_email.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_user_email.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_user_email.Font = new System.Drawing.Font("Century Schoolbook", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txt_user_email.Location = new System.Drawing.Point(112, 267);
+            this.txt_user_email.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_user_email.Name = "txt_user_email";
+            this.txt_user_email.Size = new System.Drawing.Size(195, 31);
+            this.txt_user_email.TabIndex = 1;
+            this.txt_user_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_Onpress);
             // 
             // txt_user_pass
             // 
@@ -166,6 +166,19 @@ namespace Login
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
             this.panel3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Login.Properties.Resources.Logo_pic;
+            this.pictureBox4.Location = new System.Drawing.Point(18, 8);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(61, 46);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 15;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseDown);
+            this.pictureBox4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
+            this.pictureBox4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -176,6 +189,22 @@ namespace Login
             this.label2.Size = new System.Drawing.Size(178, 35);
             this.label2.TabIndex = 16;
             this.label2.Text = "MobileMart";
+            // 
+            // eyes
+            // 
+            this.eyes.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eyes.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eyes.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eyes.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eyes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eyes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.eyes.Location = new System.Drawing.Point(303, 335);
+            this.eyes.Name = "eyes";
+            this.eyes.Size = new System.Drawing.Size(48, 31);
+            this.eyes.TabIndex = 17;
+            this.eyes.UseVisualStyleBackColor = false;
+            this.eyes.Visible = false;
+            this.eyes.Click += new System.EventHandler(this.eyes_Click);
             // 
             // pictureBox3
             // 
@@ -210,32 +239,6 @@ namespace Login
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
-            // eyes
-            // 
-            this.eyes.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.eyes.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
-            this.eyes.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.eyes.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.eyes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eyes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.eyes.Location = new System.Drawing.Point(303, 335);
-            this.eyes.Name = "eyes";
-            this.eyes.Size = new System.Drawing.Size(48, 31);
-            this.eyes.TabIndex = 17;
-            this.eyes.UseVisualStyleBackColor = false;
-            this.eyes.Visible = false;
-            this.eyes.Click += new System.EventHandler(this.eyes_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Login.Properties.Resources.Logo_pic;
-            this.pictureBox4.Location = new System.Drawing.Point(18, 8);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(61, 46);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 15;
-            this.pictureBox4.TabStop = false;
-            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -252,7 +255,7 @@ namespace Login
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_user_pass);
-            this.Controls.Add(this.txt_user_name);
+            this.Controls.Add(this.txt_user_email);
             this.Controls.Add(this.panel3);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -262,17 +265,17 @@ namespace Login
             this.Text = "Login";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txt_user_name;
+        private System.Windows.Forms.TextBox txt_user_email;
         private System.Windows.Forms.TextBox txt_user_pass;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
