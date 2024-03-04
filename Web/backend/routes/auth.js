@@ -9,8 +9,9 @@ router.post('/login', function(req, res,next){
     DB.select_user(req.body.email, req.body.password)
     .then(data => data[0])
     .then(data => {
-        const packet = {"email": data.email, "role": data.role}
+        const packet = {"email": data.user_email}
         const token = jwt.sign(packet, authconf.secret, {expiresIn: "1800s"});
+        req.email = data.email;
         res.status(200).json(
             {
                 data: data,
@@ -27,5 +28,18 @@ router.get('/userprofile', [authjwt.verifyToken],(req,res) =>{
     .then(data => res.json(data))
     .catch( error => res.send(error))
 });
+
+router.post('/registration', (req,res)=>{
+    DB.reg_new_user(req.body)
+    .then(data => res.send("Sikeres regisztráció"))
+    .catch(error => res.send(error))
+})
+
+router.put('/update', (req,res)=>{
+    console.log(req.body)
+    DB.update_user_prof(req.body)
+    .then(data => res.send("Sikeres módosítás"))
+    .catch(error => res.send(error))
+})
 
 module.exports = router;

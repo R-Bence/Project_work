@@ -22,7 +22,7 @@ export default function NavigationBar() {
                     <Nav.Link as={NavLink} to="/brands" activeClassName="active-link">Márkák</Nav.Link>
                     <Nav.Link as={NavLink} to="/about" activeClassName="active-link">Rólunk</Nav.Link>
                     <Nav className="icon_container">
-                        <Nav.Link as={NavLink} to="/auth/login"><img src={profilepng} className="icon" alt="Profil" /></Nav.Link>
+                        <Nav.Link as={NavLink} to="/auth/profile"><img src={profilepng} className="icon" alt="Profil" /></Nav.Link>
                         <Nav.Link as={NavLink} to="/cart"><img src={cartpng} className="icon" alt="Kosár" /></Nav.Link>
                     </Nav>
 

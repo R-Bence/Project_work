@@ -47,14 +47,11 @@ namespace Login
                     mainForm.Show();
                     this.Hide();
                 }
-                else
-                {
-                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba történt: " + ex.Message);
+                MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+
             }
             finally
             {

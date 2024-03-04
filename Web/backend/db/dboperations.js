@@ -67,7 +67,7 @@ async function select_search_data(fil) {
 //Login
 async function select_user(email, pass) {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT mobil.users.user_name FROM mobil.users WHERE mobil.users.user_email = ? AND mobil.users.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
+        pool.query('SELECT mobil.users.user_email FROM mobil.users WHERE mobil.users.user_email = ? AND mobil.users.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -80,7 +80,7 @@ async function select_user(email, pass) {
 
 async function get_user_profil(email){
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM mobil.users WHERE mobil.users.user_email = ?',[email],(error, results) => {
+        pool.query('SELECT * FROM mobil.users WHERE mobil.users.user_email like ?',[email],(error, results) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -91,11 +91,56 @@ async function get_user_profil(email){
     });
 }
 
+async function reg_new_user(data){
+    return new Promise((resolve, reject) =>{
+        pool.query('INSERT INTO mobil.users (user_name,user_email, user_tel, user_pass, user_type) values (?,?,?,SHA2(?,256),1)',[data.name, data.email,data.number,data.pass], (error,results)=>{
+            if(error){
+                reject(error);
+            }
+            else{
+                resolve(results)
+            }
+        })
+    })
+}
+
+async function update_user_prof(data){
+    return new Promise((resolve, reject) => {
+        let sql = 'update mobil.users set ';
+        let arr = [];
+        if(data.name){
+            sql+= 'user_name =? '
+            arr.push(data.name);
+        }
+        if(data.email){
+            sql+=' user_email= ? '
+            arr.push(data.email);
+        }
+        if(data.pass){
+          sql+=' user_pass= SHA2(?,256) '
+          arr.push(data.pass);
+        }
+        if(data.number){
+            sql+=' user_tel= ? '
+            arr.push(data.number);
+          }
+        sql += ' where user_id = ? '
+        arr.push(data.id);
+        console.log(sql);
+        pool.query(sql,arr,(error, elements) =>
+        {
+            if(error) {return reject(error)}
+            return resolve(elements);
+        });
+    });
+  };
 
 module.exports ={
     allProduct,
     selectProductPerPage,
     select_search_data,
     select_user,
-    get_user_profil
+    get_user_profil,
+    reg_new_user,
+    update_user_prof
 }

@@ -18,9 +18,9 @@ const SearchComponent = () => {
             navigate('/products');
         }
         else{
-            const asd = queryString.stringify(fil);
-            console.log(asd);
-            navigate(`/products/search?${asd}`);
+            const search_query = queryString.stringify(fil);
+            navigate(`/products/search?${search_query}`);
+            window.location.reload();
         }
 
     };

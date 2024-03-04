@@ -10,14 +10,16 @@ const verifyToken = (req, res, next) => {
         jwt.verify(token, config.secret, (err, decoded) => {
             if (err) {
                 return res.status(401).send({ message: "Nincs ilyen felhasználó!" });
+            } else {
+                req.userParams = decoded;
+                req.iatDate = { [`Kiadva: `]: new Date(1000 * req.userParams.iat).toLocaleString() };
+                req.expDate = { [`Érvényes: `]: new Date(1000 * req.userParams.exp).toLocaleString() };
+                next();
             }
-            req.userParams = decoded;
-            req.iatDate = { [`Kiadva: `]: new Date(1000 * req.userParams.iat).toLocaleString() };
-            req.expDate = { [`Érvényes: `]: new Date(1000 * req.userParams.exp).toLocaleString() };
-            next();
         });
     }
 };
+
 
 const verifyAdmin = (req, res, next) => {
     let token = req.headers["x-access-token"];

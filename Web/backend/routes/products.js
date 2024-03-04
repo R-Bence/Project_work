@@ -17,7 +17,6 @@ router.get('/page/:pageNo', (req,res)=>{
 //Szürt termék lekérés
 router.post('/search', (req, res) => {
     let fil = req.body;
-    console.log(fil);
     Db.select_search_data(fil)
         .then(adat => {
             if (adat.length === 0) { 
