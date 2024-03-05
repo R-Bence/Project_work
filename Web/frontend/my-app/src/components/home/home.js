@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+import { useNavigate } from 'react-router-dom';
 //img
 import applelogo from '../../img/img/Apple-Logo-Design.webp';
 import asuslogo from '../../img/img/asus-logo.webp';
@@ -21,7 +23,8 @@ import "./home.scss"
 
 
 
-function DarkVariantExample() {
+export default function Home() {
+    const navigate = useNavigate('');
   return (<>
 <section>
     <Carousel>
@@ -61,7 +64,7 @@ function DarkVariantExample() {
                         <Card.Text>
                             Tapasztald meg az Asus okoseszközök teljesítményét és stílusát! 
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=asus`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -73,7 +76,7 @@ function DarkVariantExample() {
                         <Card.Text>
                             Fedezd fel a Huawei okostelefonok világát, ahol a kifinomult dizájn találkozik a csúcsteljesítménnyel.
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=huawei`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -86,7 +89,7 @@ function DarkVariantExample() {
                         Az Apple termékei a dizájn és funkcionalitás tökéletes egyensúlyát képviselik.
                         Éld át a magas minőségű élményt az iPhone-nal.
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=apple`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -99,7 +102,7 @@ function DarkVariantExample() {
                         Éld meg a Sony által kínált szórakoztató világot!
                         Az Xperia okostelefonok nemcsak elegánsak, de erőteljes teljesítményőek.
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=sony`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -110,4 +113,3 @@ function DarkVariantExample() {
 
 }
 
-export default DarkVariantExample;

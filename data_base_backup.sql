@@ -222,14 +222,15 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `getbrand`
+-- Temporary view structure for view `get_products`
 --
 
-DROP TABLE IF EXISTS `getbrand`;
-/*!50001 DROP VIEW IF EXISTS `getbrand`*/;
+DROP TABLE IF EXISTS `get_products`;
+/*!50001 DROP VIEW IF EXISTS `get_products`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `getbrand` AS SELECT 
+/*!50001 CREATE VIEW `get_products` AS SELECT 
+ 1 AS `id`,
  1 AS `name`,
  1 AS `ar`,
  1 AS `brand_name`,
@@ -294,7 +295,8 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `order_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `order_date` datetime DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `location` varchar(80) COLLATE utf8mb3_hungarian_ci NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `user_idx` (`user_id`),
   CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
@@ -307,9 +309,35 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,2,'2024-02-22 00:00:00'),(2,1,NULL),(3,1,NULL);
+INSERT INTO `orders` VALUES (1,2,'2024-02-22',''),(2,1,NULL,''),(3,1,NULL,'');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `product_all_details`
+--
+
+DROP TABLE IF EXISTS `product_all_details`;
+/*!50001 DROP VIEW IF EXISTS `product_all_details`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `product_all_details` AS SELECT 
+ 1 AS `base_id`,
+ 1 AS `name`,
+ 1 AS `brand_name`,
+ 1 AS `capacity`,
+ 1 AS `screen_size`,
+ 1 AS `res_x`,
+ 1 AS `res_y`,
+ 1 AS `ram`,
+ 1 AS `storage`,
+ 1 AS `rear_camera`,
+ 1 AS `front_camera`,
+ 1 AS `op_syst`,
+ 1 AS `gpu_name`,
+ 1 AS `cpu_name`,
+ 1 AS `price`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `ram`
@@ -463,6 +491,8 @@ CREATE TABLE `users` (
   `user_type` int NOT NULL,
   `user_pass` varchar(200) COLLATE utf8mb3_hungarian_ci NOT NULL,
   PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_email_UNIQUE` (`user_email`),
+  UNIQUE KEY `user_name_UNIQUE` (`user_name`),
   KEY `type_idx` (`user_type`),
   CONSTRAINT `type` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_hungarian_ci;
@@ -497,10 +527,10 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Final view structure for view `getbrand`
+-- Final view structure for view `get_products`
 --
 
-/*!50001 DROP VIEW IF EXISTS `getbrand`*/;
+/*!50001 DROP VIEW IF EXISTS `get_products`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -509,7 +539,25 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`user`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `getbrand` AS select `base`.`name` AS `name`,`base`.`price` AS `ar`,`brand`.`brand_name` AS `brand_name`,`base`.`img` AS `img` from (`base` join `brand` on((`base`.`brand` = `brand`.`brand_id`))) */;
+/*!50001 VIEW `get_products` AS select `base`.`base_id` AS `id`,`base`.`name` AS `name`,`base`.`price` AS `ar`,`brand`.`brand_name` AS `brand_name`,`base`.`img` AS `img` from (`base` join `brand` on((`base`.`brand` = `brand`.`brand_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `product_all_details`
+--
+
+/*!50001 DROP VIEW IF EXISTS `product_all_details`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`user`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `product_all_details` AS select `base`.`base_id` AS `base_id`,`base`.`name` AS `name`,`brand`.`brand_name` AS `brand_name`,`battery`.`capacity` AS `capacity`,`size`.`screen_size` AS `screen_size`,`resolution_x`.`res_size` AS `res_x`,`resolution_y`.`res_size` AS `res_y`,`ram`.`ram` AS `ram`,`storage`.`storage` AS `storage`,`camera_rear`.`camera` AS `rear_camera`,`camera_front`.`camera` AS `front_camera`,`op`.`op_syst` AS `op_syst`,`gpu`.`gpu_name` AS `gpu_name`,`cpu`.`cpu_name` AS `cpu_name`,`base`.`price` AS `price` from ((((((((((((`base` left join `brand` on((`base`.`brand` = `brand`.`brand_id`))) left join `battery` on((`base`.`battery` = `battery`.`battery_id`))) left join `size` on((`base`.`size` = `size`.`size_id`))) left join `resolution` `resolution_x` on((`base`.`res_x` = `resolution_x`.`res_id`))) left join `resolution` `resolution_y` on((`base`.`res_y` = `resolution_y`.`res_id`))) left join `ram` on((`base`.`ram` = `ram`.`ram_id`))) left join `storage` on((`base`.`storage` = `storage`.`storage_id`))) left join `camera` `camera_rear` on((`base`.`rear_camera` = `camera_rear`.`camera_id`))) left join `camera` `camera_front` on((`base`.`front_camera` = `camera_front`.`camera_id`))) left join `op` on((`base`.`op` = `op`.`id_op`))) left join `gpu` on((`base`.`gpu` = `gpu`.`gpu_id`))) left join `cpu` on((`base`.`cpu` = `cpu`.`cpu_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -541,4 +589,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-04 18:42:57
+-- Dump completed on 2024-03-05 20:26:44

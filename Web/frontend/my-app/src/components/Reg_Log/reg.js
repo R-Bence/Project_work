@@ -37,7 +37,7 @@ export default function Regist_form(){
                 <p>Felhasználó név: <input type='text' placeholder='Például: Béla123' onChange={(e) => set_name(e.target.value)}/></p>
                 <p>Email: <input type='text' placeholder='bela123@gmail.hu' onChange={(e) => set_email(e.target.value)}/></p>
                 <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass(e.target.value)}/></p>
-                <p>Jelszó: <input type='tel' placeholder='+36201234567' onChange={(e) => set_number(e.target.value)}/></p>
+                <p>Telefonszám: <input type='tel' placeholder='+36201234567' onChange={(e) => set_number(e.target.value)}/></p>
                 <button onClick={regist}>Regisztrálok</button>
                 <button onClick={handleLogin}>Belépek</button>
             </div>

@@ -19,7 +19,7 @@ export default function NavigationBar() {
             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav className="mr-auto">
                     <Nav.Link as={NavLink} to="/products" activeClassName="active-link">Termékek</Nav.Link>
-                    <Nav.Link as={NavLink} to="/brands" activeClassName="active-link">Márkák</Nav.Link>
+                    <Nav.Link as={NavLink} to="/products/brands" activeClassName="active-link">Márkák</Nav.Link>
                     <Nav.Link as={NavLink} to="/about" activeClassName="active-link">Rólunk</Nav.Link>
                     <Nav className="icon_container">
                         <Nav.Link as={NavLink} to="/auth/profile"><img src={profilepng} className="icon" alt="Profil" /></Nav.Link>

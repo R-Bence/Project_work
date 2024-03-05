@@ -4,8 +4,8 @@ const getAll = () => {
     return http.get('/products');
 }
 
-const get = (brand) => {
-    return http.get(`/products/${brand}`);
+const get_brand = () => {
+    return http.get(`/products/brands`);
 }
 
 const postSearch = (fil) =>{
@@ -20,12 +20,22 @@ const modify = (data) => {
     return http.put('/auth/update',data);
 }
 
+const get_details= (id) =>{
+    return http.get(`/products/${id}`)
+}
+
+const final_order = (cart) =>{
+    return http.put(`/cart`,cart)
+}
+
 const Pro_service = {
     getAll,
-    get,
+    get_brand,
     postSearch,
     regist,
-    modify
+    modify,
+    get_details,
+    final_order
 };
 
 export default Pro_service;

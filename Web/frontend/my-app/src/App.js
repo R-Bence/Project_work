@@ -7,11 +7,14 @@ import Products from "./components/products/product"
 
 import About from './components/About/about';
 
-import SearchBar from './components/search_bar/search';
+//Termékek
 import Result from './components/search_bar/result';
-
+import Brands from './components/products/brands'
+import Focus_product from './components/products/focus_product'
 import Footer from './components/footer/footer';
 
+//Order/Cart
+import Cart from './components/cart/cart'
 //Auth
 import Login from './components/Reg_Log/login';
 import Profile from './components/Reg_Log/profile';
@@ -35,26 +38,22 @@ function App() {
   
 
 
-  //const [cart, set_cart] = useState([]);
-/*
-  const add_To_cart = (termekek) =>{
-    const vanilyen = cart.find(item => item.products.id === termekek.id);
+  const [cart, set_cart] = useState([]);
 
-    if(vanilyen){
-      const ujKosar = cart.map(item =>{
-        item.products.id === termekek.id ? {
-          ...item, quantity: item.quantity+1
-        } 
-        : item
+  const add_To_cart = (termekek) => {
+    const vanilyen = cart.find(item => item.products.base_id === termekek.base_id);
+  
+    if (vanilyen) {
+      const ujKosar = cart.map(item =>
+        item.products.base_id === termekek.base_id ? { ...item, quantity: item.quantity + 1 } : item
+      );
       set_cart(ujKosar);
-    })}
-     
-    else{
-      set_cart(...cart, {products:termekek, quantity:1})
+    } else {
+      set_cart([...cart, { products: termekek, quantity: 1 }]);
     }
-    set
-  } add_To_cart={add_to_cart}
-*/
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+  };
+
   return (<>
     <Router>
       <Navbar/>
@@ -64,9 +63,12 @@ function App() {
             <Route path='/products' element={<Products/>} />
             <Route path='/about' element={<About/>}/>
             <Route path='/products/search' element={<Result/>}/>
+            <Route path='/products/brands' element={<Brands/>}/>
+            <Route path='/products/:id' element={<Focus_product add_To_cart={add_To_cart} loggedIn={loggedIn}/>}/>
             <Route path='/auth/login' element={<Login loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
             <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
             <Route path='/auth/registration' element={<Regist_form loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
+            <Route path='/cart' element={<Cart cart={cart}/>}/>
             <Route path='*' element={<NoPage/>}/>
         </Route>
       </Routes>

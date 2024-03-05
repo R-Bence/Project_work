@@ -5,7 +5,29 @@ let pool = sql.createPool(config);
 
 async function allProduct() {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM mobil.getbrand;', (error, elements) => {
+        pool.query('SELECT * FROM mobil.get_products;', (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
+        });
+    });
+}
+
+async function all_details(id) {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM mobil.product_all_details where base_id = ?;',[id], (error, elements) => {
+            if (error) {
+                return reject(error)
+            }
+            return resolve(elements);
+        });
+    });
+}
+
+async function all_brand() {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM mobil.brand;', (error, elements) => {
             if (error) {
                 return reject(error)
             }
@@ -29,7 +51,7 @@ async function selectProductPerPage(pageNo){
 async function select_search_data(fil) {
     console.log(fil);
     return new Promise((resolve, reject) => {
-        let whereQuery = "SELECT base.name, base.price, brand.brand_name, base.img FROM base JOIN brand ON base.brand = brand.brand_id WHERE ";
+        let whereQuery = "SELECT base.base_id as id, base.name, base.price, brand.brand_name, base.img FROM base JOIN brand ON base.brand = brand.brand_id WHERE ";
         let values = [];
 
         if (fil.keyword) {
@@ -142,5 +164,7 @@ module.exports ={
     select_user,
     get_user_profil,
     reg_new_user,
-    update_user_prof
+    update_user_prof,
+    all_brand,
+    all_details
 }

@@ -2,8 +2,10 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import './product.scss';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cards({ data }) {
+    const navigate = useNavigate('');
     const SkeletonLoader = () => (
         <Card className="skeleton-loader">
             <Card.Img className="skeleton-img"></Card.Img>
@@ -14,11 +16,16 @@ export default function Cards({ data }) {
         </Card>
     );
 
+    const handle_navigate= (id) =>{
+        console.log(id);
+        navigate(`/products/${id}`)
+      }
+
     return (
         data.length > 0 ? (
             data.map((telefon) => (
                 <Col key={telefon.id}>
-                    <Card>
+                    <Card onClick={() => handle_navigate(telefon.id)}>
                         {telefon.name ? (
                             <>
                                 <Card.Img

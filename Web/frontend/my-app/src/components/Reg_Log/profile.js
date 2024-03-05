@@ -81,6 +81,8 @@ const setAuthHeader = () => {
       if (number !== '') {
         data.number = number;
       }
+      window.location.reload();
+
       Services.modify(data);
     }
     return (

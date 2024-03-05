@@ -18,7 +18,7 @@ const Result = () => {
         Db.postSearch(szures)
         .then(res => {
             setData(res.data);
-            console.log(senddata)
+            console.log(senddata);
         })
         .catch(error => {console.log(error); setmsg(error)})
     },[])
