@@ -30,9 +30,7 @@ const setAuthHeader = () => {
     const [pass, set_pass] = useState('');
     const [number, set_number] = useState('');
   
-    // Adatlekérés a szerverről AXIOS!!
     useEffect(() => {
-      //console.log('useEffect');
       setAuthHeader();
       http.get('/auth/userprofile')
         .then(response => {

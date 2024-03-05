@@ -8,19 +8,18 @@ export default function Cart() {
   const [msg, set_msg] = useState('');
 
   useEffect(() => {
-    // Fetch data from sessionStorage
-    const storedCart = JSON.parse(sessionStorage.getItem('cart'));
-    if (storedCart) {
-      setCart(storedCart);
+    const stored_cart = JSON.parse(sessionStorage.getItem('cart'));
+    if (stored_cart) {
+      setCart(stored_cart);
     }
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+  }, []);
 
   //AI
   const handle_quantity = (index, newQuantity) => {
-    const updatedCart = [...cart];
-    updatedCart[index].quantity = newQuantity;
-    setCart(updatedCart);
-    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+    const updated_cart = [...cart];
+    updated_cart[index].quantity = newQuantity;
+    setCart(updated_cart);
+    sessionStorage.setItem('cart', JSON.stringify(updated_cart));
   };
 
   const rendel = () => {

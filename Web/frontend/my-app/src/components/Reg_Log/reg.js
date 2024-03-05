@@ -22,11 +22,11 @@ export default function Regist_form(){
             }
             console.log(data)
             http.regist(data)
-            .then(res => handleLogin)
+            .then(res => handle_login)
             .catch(error => console.log(error))} 
 
 
-    const handleLogin = () =>{
+    const handle_login = () =>{
         navigate('/auth/login');
     }
     return(
@@ -39,7 +39,7 @@ export default function Regist_form(){
                 <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass(e.target.value)}/></p>
                 <p>Telefonszám: <input type='tel' placeholder='+36201234567' onChange={(e) => set_number(e.target.value)}/></p>
                 <button onClick={regist}>Regisztrálok</button>
-                <button onClick={handleLogin}>Belépek</button>
+                <button onClick={handle_login}>Belépek</button>
             </div>
         </div>
     )

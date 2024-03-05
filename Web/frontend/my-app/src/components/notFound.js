@@ -3,7 +3,7 @@ import React from "react";
 const NoPage = () => {
   const style = {
     textAlign: "center",
-    marginTop: "40vh", // A képernyő magasságának fele
+    marginTop: "40vh",
     transform: "translateY(-50%)",
   };
 

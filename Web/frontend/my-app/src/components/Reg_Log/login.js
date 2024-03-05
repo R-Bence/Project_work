@@ -10,7 +10,7 @@ export default function Login_side({loggedIn,setIslogged}){
     const [user_pass, set_user_pass] = useState('');
     const [msg, set_msg] = useState('');
     const navigate = useNavigate();
-    const handleLogin=() =>{
+    const handle_login=() =>{
         http.post('/auth/login', {email:user_email, password:user_pass})
         .then(data =>{
             console.log(data);
@@ -38,7 +38,7 @@ export default function Login_side({loggedIn,setIslogged}){
         })
     }
 
-    const handleReg = () =>{
+    const handle_reg = () =>{
         navigate('/auth/registration')
     }
     return(
@@ -50,8 +50,8 @@ export default function Login_side({loggedIn,setIslogged}){
             <div>
                 <input type='password' onChange={(e)=> set_user_pass(e.target.value)} placeholder='Jelszó'/>
             </div>
-            <button onClick={handleLogin}>Belépés</button>
-            <button onClick={handleReg}>Regisztrálok</button>
+            <button onClick={handle_login}>Belépés</button>
+            <button onClick={handle_reg}>Regisztrálok</button>
         </div>
     )
 }

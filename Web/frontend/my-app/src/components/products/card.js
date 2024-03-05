@@ -30,7 +30,7 @@ export default function Cards({ data }) {
                             <>
                                 <Card.Img
                                     variant="top"
-                                    src={telefon.img}  // Add the image source from telefon.img
+                                    src={telefon.img}
                                     alt={telefon.name}
                                     className='card-img-custom'
                                 />

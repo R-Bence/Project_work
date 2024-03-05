@@ -22,7 +22,6 @@ import Regist_form from './components/Reg_Log/reg';
 // egyéb components
 import NoPage from './components/notFound';
 import { useEffect, useState } from 'react';
-import Termekek from './components/products/product';
 
 function App() {
   const [loggedIn, set_loggedIn] = useState(false);
@@ -32,11 +31,6 @@ function App() {
       sessionStorage.removeItem('login');
     }
   })
-  
-
-
-  
-
 
   const [cart, set_cart] = useState([]);
 

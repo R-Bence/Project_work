@@ -8,7 +8,7 @@ import './product.scss';
 import Searc_bar from '../search_bar/search';
 
 export default function Termekek() {
-  const [senddata, setData] = useState(productService.getAll());
+  const [senddata, setData] = useState([]);
   const [msg, setmsg] = useState('');
 
 
