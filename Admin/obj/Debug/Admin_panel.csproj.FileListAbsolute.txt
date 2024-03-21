@@ -41,3 +41,4 @@ C:\Users\Rázsó Bence\Desktop\Project munka\Admin\obj\Debug\Admin_panel.csproj.
 C:\Users\Rázsó Bence\Desktop\Project munka\Admin\obj\Debug\Admin_panel.csproj.CopyComplete
 C:\Users\Rázsó Bence\Desktop\Project munka\Admin\obj\Debug\Login.exe
 C:\Users\Rázsó Bence\Desktop\Project munka\Admin\obj\Debug\Login.pdb
+C:\Users\Rázsó Bence\Desktop\Project munka\Admin\obj\Debug\Login.addData.resources

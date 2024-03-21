@@ -89,7 +89,7 @@ async function select_search_data(fil) {
 //Login
 async function select_user(email, pass) {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT mobil.users.user_email FROM mobil.users WHERE mobil.users.user_email = ? AND mobil.users.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
+        pool.query('SELECT mobil.user.user_email FROM mobil.user WHERE mobil.user.user_email = ? AND mobil.user.user_pass = SHA2(?, 256);',[email, pass],(error, results) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -102,7 +102,7 @@ async function select_user(email, pass) {
 
 async function get_user_profil(email){
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM mobil.users WHERE mobil.users.user_email like ?',[email],(error, results) => {
+        pool.query('SELECT * FROM mobil.user WHERE mobil.user.user_email like ?',[email],(error, results) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -115,7 +115,7 @@ async function get_user_profil(email){
 
 async function reg_new_user(data){
     return new Promise((resolve, reject) =>{
-        pool.query('INSERT INTO mobil.users (user_name,user_email, user_tel, user_pass, user_type) values (?,?,?,SHA2(?,256),1)',[data.name, data.email,data.number,data.pass], (error,results)=>{
+        pool.query('INSERT INTO mobil.user (user_name,user_email, user_tel, user_pass, user_type) values (?,?,?,SHA2(?,256),1)',[data.name, data.email,data.number,data.pass], (error,results)=>{
             if(error){
                 reject(error);
             }
@@ -128,7 +128,7 @@ async function reg_new_user(data){
 
 async function update_user_prof(data){
     return new Promise((resolve, reject) => {
-        let sql = 'update mobil.users set ';
+        let sql = 'update mobil.user set ';
         let arr = [];
         if(data.name){
             sql+= 'user_name =? '
@@ -157,6 +157,15 @@ async function update_user_prof(data){
     });
   };
 
+async function order(data){
+    return new Promise((resolve, reject) =>{
+        data.forEach(element => {
+            console.log(element);
+        });
+    })
+}  
+
+
 module.exports ={
     allProduct,
     selectProductPerPage,
@@ -166,5 +175,6 @@ module.exports ={
     reg_new_user,
     update_user_prof,
     all_brand,
-    all_details
+    all_details,
+    order
 }

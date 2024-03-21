@@ -18,17 +18,17 @@ const setAuthHeader = () => {
   };
   
   
-  export default function UserProfil(set_user_id) {
+  export default function UserProfil({userId, setUserId}) {
     const [islogged, setIslogged] = useState(false);
     const [valasz, setValasz] = useState({});
     const [msg, setMsg] = useState('');
     const navigate = useNavigate('');
   
-    const [id , set_id] = useState('');
     const [name, set_name] = useState('');
     const [email, set_email] = useState('');
     const [pass, set_pass] = useState('');
     const [number, set_number] = useState('');
+    const [addres, set_addres] = useState('');
   
     useEffect(() => {
       setAuthHeader();
@@ -37,7 +37,7 @@ const setAuthHeader = () => {
           setIslogged(true);
           setValasz(response);
           setMsg('Azonosítás OK ');
-          set_id(response.data[0].user_id)
+          setUserId(response.data[0].user_id)
         })
         .catch(error => {
           setValasz(error);
@@ -58,12 +58,14 @@ const setAuthHeader = () => {
 
     const Logout_handle = () =>{
         localStorage.removeItem('token');
+        sessionStorage.removeItem('login');
         navigate('/');
+        window.location.reload();
     }
 
     const modify_data = () =>{
       const data = {};
-      data.id = id;
+      data.id = userId;
       if (name !== '') {
         data.name = name;
       }
@@ -79,12 +81,16 @@ const setAuthHeader = () => {
       if (number !== '') {
         data.number = number;
       }
+      if(addres !== ''){
+        data.addres = addres;
+      }
       window.location.reload();
 
       Services.modify(data);
     }
     return (
       <div className='text-center'>
+      <h1>{msg}</h1>
         {!islogged ?
           (<div >
             <h2>Nincs bejelentkezve</h2>
@@ -102,6 +108,7 @@ const setAuthHeader = () => {
                       <p>Email: <input type='text' placeholder={user.user_email} onChange={(e) => set_email(e.target.value)}/></p>
                       <p>Telefonszám: <input type='text' placeholder={user.user_tel} onChange={(e) => set_number(e.target.value)}/></p>
                       <p>Jelszó: <input type='text' placeholder='Jelszó' onChange={(e) => set_pass(e.target.value)}/></p>
+                      <p>Lakcím: <input type='text' placeholder={user.user_addres || "Nincs lakcím megadva"} onChange={(e) => set_addres(e.target.value)}/></p>
                     </div>
                     <button onClick={modify_data}>Modosítások mentése</button>
                   </div>

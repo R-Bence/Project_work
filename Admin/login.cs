@@ -12,6 +12,7 @@ namespace Login
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=guest;pwd=guest123@");
         string role = "";
         string name = "";
+        string id = "";
         public login()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace Login
             {
                 conn.Open();
 
-                string login_query = "SELECT users.user_name, users.user_email, users.user_pass, user_type.type_name FROM users INNER JOIN user_type ON users.user_type = user_type.type_id WHERE users.user_email = @user_email AND users.user_pass = SHA2(@user_pass,256) and (user_type.type_name like 'owner' or user_type.type_name like 'admin')";
+                string login_query = "SELECT user.user_id, user.user_name, user.user_email, user.user_pass, user_type.type_name FROM user INNER JOIN user_type ON user.user_type = user_type.type_id WHERE user.user_email = @user_email AND user.user_pass = SHA2(@user_pass,256) and (user_type.type_name like 'superadmin' or user_type.type_name like 'admin')";
 
                 MySqlCommand cmd = new MySqlCommand(login_query, conn);
                 cmd.Parameters.AddWithValue("@user_email", user_email);
@@ -38,20 +39,21 @@ namespace Login
                 DataRow row = dtable.Rows[0];
                 name = row["user_name"].ToString();
                 role = row["type_name"].ToString();
+                id = row["user_id"].ToString();
 
                 if (dtable.Rows.Count > 0)
                 {
                     mainForm mainForm = new mainForm();
                     mainForm.return_role = role;
                     mainForm.return_name = name;
+                    mainForm.return_id = id;
                     mainForm.Show();
                     this.Hide();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-
+                MessageBox.Show("Hibás felhasználónév vagy jelszó! " + ex);
             }
             finally
             {
@@ -95,6 +97,7 @@ namespace Login
             }
 
         }
+
         Point start = new Point(0, 0);
         bool drag = false;
         private void panel_header_MouseDown(object sender, MouseEventArgs e)
@@ -147,6 +150,11 @@ namespace Login
                 eyes.Image = null;
                 eyes.Visible = false;
             }
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

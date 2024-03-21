@@ -44,6 +44,7 @@ namespace Login
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.minimize = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -155,6 +156,7 @@ namespace Login
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel3.Controls.Add(this.minimize);
             this.panel3.Controls.Add(this.pictureBox4);
             this.panel3.Controls.Add(this.close);
             this.panel3.Controls.Add(this.label1);
@@ -239,6 +241,19 @@ namespace Login
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
+            // minimize
+            // 
+            this.minimize.BackColor = System.Drawing.Color.DarkGray;
+            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.minimize.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.minimize.Location = new System.Drawing.Point(281, 17);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(56, 29);
+            this.minimize.TabIndex = 16;
+            this.minimize.Text = "_";
+            this.minimize.UseVisualStyleBackColor = false;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
+            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,6 +305,7 @@ namespace Login
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button eyes;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button minimize;
     }
 }
 

@@ -32,8 +32,8 @@ export default function Termekek() {
 
   return (
     <>
-      <Container className='search_bar_holder'>
-        <Row xs={1} xl={2}>
+      <Container>
+        <Row>
           <Col>
           <Searc_bar />
           </Col>

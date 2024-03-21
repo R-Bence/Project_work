@@ -52,17 +52,19 @@ namespace Login
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.minimize = new System.Windows.Forms.Button();
+            this.name_txt_label = new System.Windows.Forms.Label();
             this.fils_combo_box = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.exit_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.add_product = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.name_txt_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getbrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asd)).BeginInit();
@@ -75,7 +77,6 @@ namespace Login
             ((System.ComponentModel.ISupportInitialize)(this.getbrandBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource2)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,8 +87,9 @@ namespace Login
             this.logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logout_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold);
             this.logout_btn.Location = new System.Drawing.Point(-1, 470);
+            this.logout_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logout_btn.Name = "logout_btn";
-            this.logout_btn.Size = new System.Drawing.Size(246, 33);
+            this.logout_btn.Size = new System.Drawing.Size(245, 33);
             this.logout_btn.TabIndex = 0;
             this.logout_btn.Text = "Kijelentkezés";
             this.logout_btn.UseVisualStyleBackColor = false;
@@ -116,6 +118,7 @@ namespace Login
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.MediumAquamarine;
             this.dataGridView1.Location = new System.Drawing.Point(244, 55);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -129,7 +132,7 @@ namespace Login
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1007, 451);
+            this.dataGridView1.Size = new System.Drawing.Size(1007, 450);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
             // 
@@ -203,7 +206,8 @@ namespace Login
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(44, 368);
+            this.comboBox1.Location = new System.Drawing.Point(45, 321);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(153, 30);
             this.comboBox1.TabIndex = 6;
@@ -213,7 +217,7 @@ namespace Login
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(41, 348);
+            this.label1.Location = new System.Drawing.Point(43, 302);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 17);
             this.label1.TabIndex = 7;
@@ -222,14 +226,15 @@ namespace Login
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel1.Controls.Add(this.minimize);
             this.panel1.Controls.Add(this.name_txt_label);
             this.panel1.Controls.Add(this.fils_combo_box);
-            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.exit_btn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(-1, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1252, 55);
             this.panel1.TabIndex = 10;
@@ -237,32 +242,50 @@ namespace Login
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
             // 
+            // minimize
+            // 
+            this.minimize.BackColor = System.Drawing.Color.DarkGray;
+            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.minimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.minimize.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.minimize.Location = new System.Drawing.Point(1139, 14);
+            this.minimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(47, 31);
+            this.minimize.TabIndex = 12;
+            this.minimize.Text = "_";
+            this.minimize.UseVisualStyleBackColor = false;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
+            // 
+            // name_txt_label
+            // 
+            this.name_txt_label.AutoSize = true;
+            this.name_txt_label.Font = new System.Drawing.Font("Perpetua Titling MT", 10F);
+            this.name_txt_label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.name_txt_label.Location = new System.Drawing.Point(834, 21);
+            this.name_txt_label.Name = "name_txt_label";
+            this.name_txt_label.Size = new System.Drawing.Size(44, 20);
+            this.name_txt_label.TabIndex = 11;
+            this.name_txt_label.Text = "Név";
+            // 
             // fils_combo_box
             // 
             this.fils_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.fils_combo_box.FormattingEnabled = true;
-            this.fils_combo_box.Location = new System.Drawing.Point(667, 13);
+            this.fils_combo_box.Location = new System.Drawing.Point(556, 14);
+            this.fils_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fils_combo_box.Name = "fils_combo_box";
             this.fils_combo_box.Size = new System.Drawing.Size(153, 30);
             this.fils_combo_box.TabIndex = 9;
             this.fils_combo_box.SelectedIndexChanged += new System.EventHandler(this.fils_combo_box_SelectedIndexChanged);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Login.Properties.Resources.search_2_line;
-            this.pictureBox2.Location = new System.Drawing.Point(826, 11);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(39, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(366, 13);
+            this.textBox1.Location = new System.Drawing.Point(365, 14);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(295, 30);
+            this.textBox1.Size = new System.Drawing.Size(185, 30);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -270,6 +293,7 @@ namespace Login
             // 
             this.pictureBox1.Image = global::Login.Properties.Resources.Logo_pic;
             this.pictureBox1.Location = new System.Drawing.Point(3, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(61, 46);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -285,9 +309,10 @@ namespace Login
             this.exit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.exit_btn.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.exit_btn.Location = new System.Drawing.Point(1192, 13);
+            this.exit_btn.Location = new System.Drawing.Point(1192, 14);
+            this.exit_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.exit_btn.Name = "exit_btn";
-            this.exit_btn.Size = new System.Drawing.Size(47, 28);
+            this.exit_btn.Size = new System.Drawing.Size(47, 30);
             this.exit_btn.TabIndex = 1;
             this.exit_btn.Text = "X";
             this.exit_btn.UseVisualStyleBackColor = false;
@@ -298,7 +323,7 @@ namespace Login
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Perpetua Titling MT", 15F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Cyan;
-            this.label2.Location = new System.Drawing.Point(59, 13);
+            this.label2.Location = new System.Drawing.Point(59, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(205, 30);
             this.label2.TabIndex = 0;
@@ -310,15 +335,50 @@ namespace Login
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.add_product);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(-1, 55);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(246, 451);
+            this.panel2.Size = new System.Drawing.Size(245, 450);
             this.panel2.TabIndex = 11;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::Login.Properties.Resources.file_reduce_line;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 230);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(245, 48);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Sor törlése";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // add_product
+            // 
+            this.add_product.BackColor = System.Drawing.SystemColors.Control;
+            this.add_product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_product.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_product.Image = global::Login.Properties.Resources.file_add_line;
+            this.add_product.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.add_product.Location = new System.Drawing.Point(0, 176);
+            this.add_product.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.add_product.Name = "add_product";
+            this.add_product.Size = new System.Drawing.Size(245, 48);
+            this.add_product.TabIndex = 9;
+            this.add_product.Text = "Sor felvétele";
+            this.add_product.UseVisualStyleBackColor = false;
+            this.add_product.Click += new System.EventHandler(this.add_product_Click);
             // 
             // button2
             // 
@@ -328,8 +388,9 @@ namespace Login
             this.button2.Image = global::Login.Properties.Resources.id_card_line;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(246, 47);
+            this.button2.Size = new System.Drawing.Size(245, 47);
             this.button2.TabIndex = 1;
             this.button2.Text = "Felhasználók";
             this.button2.UseVisualStyleBackColor = false;
@@ -343,8 +404,9 @@ namespace Login
             this.button1.Image = global::Login.Properties.Resources.luggage_cart_line;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(0, 107);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(246, 48);
+            this.button1.Size = new System.Drawing.Size(245, 48);
             this.button1.TabIndex = 8;
             this.button1.Text = "Rendelések";
             this.button1.UseVisualStyleBackColor = false;
@@ -358,35 +420,26 @@ namespace Login
             this.button3.Image = global::Login.Properties.Resources.store_3_line;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(0, 53);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(246, 48);
+            this.button3.Size = new System.Drawing.Size(245, 48);
             this.button3.TabIndex = 2;
             this.button3.Text = "Termékek";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // name_txt_label
-            // 
-            this.name_txt_label.AutoSize = true;
-            this.name_txt_label.Font = new System.Drawing.Font("Perpetua Titling MT", 10F);
-            this.name_txt_label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.name_txt_label.Location = new System.Drawing.Point(896, 17);
-            this.name_txt_label.Name = "name_txt_label";
-            this.name_txt_label.Size = new System.Drawing.Size(44, 20);
-            this.name_txt_label.TabIndex = 11;
-            this.name_txt_label.Text = "Név";
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1250, 504);
+            this.ClientSize = new System.Drawing.Size(1251, 505);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.logout_btn);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menü";
@@ -404,7 +457,6 @@ namespace Login
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -440,10 +492,12 @@ namespace Login
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox fils_combo_box;
         private System.Windows.Forms.Label name_txt_box;
         private System.Windows.Forms.Label name_txt_label;
+        private System.Windows.Forms.Button minimize;
+        private System.Windows.Forms.Button add_product;
+        private System.Windows.Forms.Button button4;
     }
 }

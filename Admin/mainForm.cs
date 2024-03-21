@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
+using Microsoft.VisualBasic;
 
 namespace Login
 {
@@ -17,6 +17,7 @@ namespace Login
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=web_admin;pwd=webadmin123@");
         public string return_role { get; set; }
         public string return_name { get; set; }
+        public string return_id { get; set; }
         string table_name = "";
         string fil = "";
         public mainForm()
@@ -50,8 +51,8 @@ namespace Login
             try
             {
                 conn.Open();
-                table_name = "users";
-                MySqlCommand cmd = new MySqlCommand($"Select * from users", conn);
+                table_name = "user";
+                MySqlCommand cmd = new MySqlCommand($"Select * from user", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -73,7 +74,7 @@ namespace Login
             {
                 conn.Open();
                 table_name = "base";
-                MySqlCommand cmd = new MySqlCommand($"Select * from base", conn);
+                MySqlCommand cmd = new MySqlCommand($"Select * from mobil.product_all_details", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -93,13 +94,15 @@ namespace Login
         {
             try
             {
-                conn.Open();
-                table_name = "rendel";
-                MySqlCommand cmd = new MySqlCommand($"SELECT * FROM mobil.rendel;", conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                dataGridView1.DataSource = dataTable;
+                {
+                    conn.Open();
+                    table_name = "rendel";
+                    MySqlCommand cmd = new MySqlCommand($"SELECT * FROM mobil.rendel", conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
             }
             catch (Exception ex)
             {
@@ -124,7 +127,7 @@ namespace Login
                     // ComboBox feltöltése tábla nevekkel
                     while (reader.Read())
                     {
-                        if (reader.GetString("table_name") == "base" || reader.GetString("table_name") == "order" || reader.GetString("table_name") == "users" || reader.GetString("table_name") == "base_conn_order" || reader.GetString("table_name") == "get_max_price" || reader.GetString("table_name") == "get_brand") ;
+                        if (reader.GetString("table_name") == "base" || reader.GetString("table_name") == "order" || reader.GetString("table_name") == "user" || reader.GetString("table_name") == "base_conn_order" || reader.GetString("table_name") == "get_max_price" || reader.GetString("table_name") == "get_brand" || reader.GetString("table_name") == "product_all_details" || reader.GetString("table_name") == "get_products" || reader.GetString("table_name") == "ram_fill" || reader.GetString("table_name") =="rendel") ;
                         else
                         {
                             comboBox1.Items.Add(reader.GetString("table_name"));
@@ -176,6 +179,13 @@ namespace Login
             tables();
             filters();
             name_txt_label.Text = "Üdvözlöm: " + return_name;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            fils_combo_box.DropDownStyle = ComboBoxStyle.DropDownList;
+            if (return_role != "superadmin")
+            {
+                button4.Enabled = false;
+                add_product.Enabled = false;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -277,41 +287,58 @@ namespace Login
         //AI
         private void CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-
-            object newValue = dataGridView1.Rows[rowIndex].Cells[e.ColumnIndex].Value;
-
-            var dataSource = dataGridView1.DataSource;
-
-            // Ellenőrzés az "id" szóra
-            if (!dataGridView1.Columns[e.ColumnIndex].Name.ToLower().Contains("id"))
+            if(return_role == "superadmin")
             {
-                string updateQuery = $"UPDATE {table_name} SET {dataGridView1.Columns[e.ColumnIndex].Name} = @NewValue WHERE user_id = @RowID";
-
-                using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn))
+                DialogResult logout_pop;
+                logout_pop = MessageBox.Show("Biztosan modosítani akarja a mező értékét?", "Modosítás", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (logout_pop == DialogResult.Yes)
                 {
-                    updateCommand.Parameters.AddWithValue("@NewValue", newValue);
-                    updateCommand.Parameters.AddWithValue("@RowID", dataGridView1.Rows[rowIndex].Cells["user_id"].Value);
+                    int rowIndex = e.RowIndex;
 
-                    try
+                    object newValue = dataGridView1.Rows[rowIndex].Cells[e.ColumnIndex].Value;
+
+                    var dataSource = dataGridView1.DataSource;
+
+                    // Ellenőrzés az "id" szóra
+                    if (!dataGridView1.Columns[e.ColumnIndex].Name.ToLower().Contains("id"))
                     {
-                        conn.Open();
-                        updateCommand.ExecuteNonQuery();
+
+                        string updateQuery = $"UPDATE {table_name} SET {dataGridView1.Columns[e.ColumnIndex].Name} = @NewValue WHERE {table_name}_id = @RowID";
+
+                        using (MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn))
+                        {
+                            updateCommand.Parameters.AddWithValue("@NewValue", newValue);
+                            updateCommand.Parameters.AddWithValue("@RowID", dataGridView1.Rows[rowIndex].Cells[$"{table_name}_id"].Value);
+                            try
+                            {
+                                conn.Open();
+                                updateCommand.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Hiba történt az adatbázis frissítése közben: {ex.Message}");
+                            }
+                            finally
+                            {
+                                conn.Close();
+                                ReloadDataGridView();
+                            }
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"Hiba történt az adatbázis frissítése közben: {ex.Message}");
-                    }
-                    finally
-                    {
-                        conn.Close();
+                        MessageBox.Show("Nem lehet módosítani az 'id' oszlopot.");
                         ReloadDataGridView();
                     }
+                }
+                else
+                {
+                    ReloadDataGridView();
                 }
             }
             else
             {
-                MessageBox.Show("Nem lehet módosítani az 'id' oszlopot.");
+                MessageBox.Show("Nincs joga hozzá hogy módosítson!");
                 ReloadDataGridView();
             }
         }
@@ -339,12 +366,68 @@ namespace Login
                     conn.Close();
                 }
             }
+            else
+            {
+                ReloadDataGridView();
+            }
 
         }
 
         private void fils_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
             fil = fils_combo_box.Text;
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string delIdInput = Microsoft.VisualBasic.Interaction.InputBox("Kérlek, adja meg a törölni kivánt ID-t:", "Törlés", "");
+            if (!string.IsNullOrEmpty(delIdInput))
+            {
+                if (delIdInput == $"{return_id}" && table_name == "user")
+                {
+                    MessageBox.Show("A felhasználó magát nem tudja kitörölni!");
+                }
+                else
+                {
+                    DialogResult logout_pop;
+                    logout_pop = MessageBox.Show($"Biztosan törölni akarja a {delIdInput} ID-val rendelkező adatot?", "Törlés", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (logout_pop == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            conn.Open();
+                            MySqlCommand cmd = new MySqlCommand($"DELETE FROM `mobil`.`{table_name}` WHERE (`{table_name}_id` = '{delIdInput}')", conn);
+                            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            dataGridView1.DataSource = dataTable;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Hiba történt: {ex.Message}");
+                        }
+                        finally
+                        {
+                            conn.Close();
+                            ReloadDataGridView();
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void add_product_Click(object sender, EventArgs e)
+        {
+            addData add = new addData();
+            add.table_name = table_name;
+            add.ShowDialog();
         }
     }
 }

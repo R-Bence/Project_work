@@ -25,9 +25,9 @@ const Result = () => {
     return (
         <>
             <Container className='search_bar_holder'>
-              <Row xs={1} xl={2}>
+              <Row>
                 <Col>
-                    <Searc_bar />
+                    <Searc_bar/>
                 </Col>
               </Row>
               <Row>

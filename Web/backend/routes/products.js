@@ -41,5 +41,11 @@ router.post('/search', (req, res) => {
         .catch(error => res.send(error));
 });
 
+router.put('/cart/rendel', (req, res) =>{
+    let data = req.body;
+    Db.order(data)
+    .then(data => res.json(data))
+    .catch(error => res.send(error));
+})
 
 module.exports = router;

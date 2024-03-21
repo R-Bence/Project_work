@@ -27,7 +27,7 @@ export default function Focus_product({add_To_cart, loggedIn}) {
     <>
       <p>{JSON.stringify(data.name)}</p>
       <button onClick={() => {
-        if(loggedIn) {add_To_cart(data)}
+        if(loggedIn == true) {add_To_cart(data)}
         else {navigate('/auth/login')}
     }}>Rendelés</button>
     </>

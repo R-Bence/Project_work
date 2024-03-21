@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Route, Routes, Outlet, useParams, useNavigate} from "react-router-dom";
 import Navbar from "./components/nav/nav-bar";
@@ -24,13 +24,9 @@ import NoPage from './components/notFound';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [loggedIn, set_loggedIn] = useState(false);
+  const [loggedIn, set_loggedIn] = useState(sessionStorage.getItem('login'));
+  const [userId, setUserId] = useState('');
 
-  useEffect(()=>{
-    if(sessionStorage.getItem('login')==true){
-      sessionStorage.removeItem('login');
-    }
-  })
 
   const [cart, set_cart] = useState([]);
 
@@ -47,7 +43,7 @@ function App() {
     }
     sessionStorage.setItem('cart', JSON.stringify(cart));
   };
-
+ 
   return (<>
     <Router>
       <Navbar/>
@@ -60,9 +56,9 @@ function App() {
             <Route path='/products/brands' element={<Brands/>}/>
             <Route path='/products/:id' element={<Focus_product add_To_cart={add_To_cart} loggedIn={loggedIn}/>}/>
             <Route path='/auth/login' element={<Login loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
-            <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
+            <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn} userId={userId} setUserId={setUserId}/>}/>
             <Route path='/auth/registration' element={<Regist_form loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
-            <Route path='/cart' element={<Cart cart={cart}/>}/>
+            <Route path='/cart' element={<Cart cart={cart} loggedIn={loggedIn} userId={userId} set_cart={set_cart}/> }/>
             <Route path='*' element={<NoPage/>}/>
         </Route>
       </Routes>

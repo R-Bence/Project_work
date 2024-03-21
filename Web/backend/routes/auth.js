@@ -35,11 +35,20 @@ router.post('/registration', (req,res)=>{
     .catch(error => res.send(error))
 })
 
-router.put('/update', (req,res)=>{
+router.patch('/update', (req,res)=>{
     console.log(req.body)
     DB.update_user_prof(req.body)
-    .then(data => res.send("Sikeres módosítás"))
-    .catch(error => res.send(error))
+    .then(
+        adat => {
+          if(adat.affectedRows == 0){
+            res.status(404);
+          }
+          else{
+            res.json(adat);
+          }
+        }
+    )   
+    .catch(error => res.send(error));
 })
 
 module.exports = router;

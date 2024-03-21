@@ -102,7 +102,7 @@ export default function Home() {
                         Éld meg a Sony által kínált szórakoztató világot!
                         Az Xperia okostelefonok nemcsak elegánsak, de erőteljes teljesítményőek.
                         </Card.Text>
-                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=sony`)}>Megnézem</Button>
+                        <Button variant="primary" className='main_btn mb-4' onClick={ () => navigate(`/products/search?brand=sony`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>

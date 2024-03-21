@@ -23,7 +23,7 @@ export default function Login_side({loggedIn,setIslogged}){
                 set_msg('');
 
                 localStorage.setItem('token', token);
-                sessionStorage.setItem('login',loggedIn);
+                sessionStorage.setItem('login', 'true');
                 navigate('/products')
             }
             else{

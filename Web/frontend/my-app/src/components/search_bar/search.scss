@@ -1,7 +1,32 @@
-input[type=text]{
+@import '../../App.scss';
+
+input,select{
     border: 1px solid black;
     border-radius: 7px;
+    background-color: transparent;
+    font-size: 18px;
+    box-shadow: 1px 2px black;
 }
 
-div{
+button{
+    background-color: transparent;
+}
+
+.search_btn{
+    @extend .main_btn;
+    margin-bottom: 20px
+}
+
+.fill_delete{
+    @extend .main_btn;
+    background-color: #C5785C ;
+}
+
+.search_container{
+    background-color: rgb(233, 233, 233);
+    border-radius: 25px;
+}
+
+.price{
+    font-size: 20px;
 }

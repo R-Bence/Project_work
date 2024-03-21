@@ -17,7 +17,7 @@ const regist = (data) =>{
 }
 
 const modify = (data) => {
-    return http.put('/auth/update',data);
+    return http.patch('/auth/update',data);
 }
 
 const get_details= (id) =>{
@@ -25,7 +25,7 @@ const get_details= (id) =>{
 }
 
 const final_order = (cart) =>{
-    return http.put(`/cart`,cart)
+    return http.put(`/products/cart/rendel`,cart)
 }
 
 const Pro_service = {

@@ -10,10 +10,15 @@ export default function Regist_form(){
     const [name, set_name] = useState('');
     const [email, set_email] = useState('');
     const [pass, set_pass] = useState('');
+    const [pass2, set_pass2] = useState('');
     const [number, set_number] = useState('');
     const [msg, set_msg] = useState('');
 
     const regist = () => {
+        if(pass != pass2){
+            set_msg("Nem egyezik meg a két jelszó");
+            return;
+        }
         const data = {
             "name" : name,
             "email" : email,
@@ -22,7 +27,7 @@ export default function Regist_form(){
             }
             console.log(data)
             http.regist(data)
-            .then(res => handle_login)
+            .then(res => handle_login())
             .catch(error => console.log(error))} 
 
 
@@ -37,6 +42,7 @@ export default function Regist_form(){
                 <p>Felhasználó név: <input type='text' placeholder='Például: Béla123' onChange={(e) => set_name(e.target.value)}/></p>
                 <p>Email: <input type='text' placeholder='bela123@gmail.hu' onChange={(e) => set_email(e.target.value)}/></p>
                 <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass(e.target.value)}/></p>
+                <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass2(e.target.value)}/></p>
                 <p>Telefonszám: <input type='tel' placeholder='+36201234567' onChange={(e) => set_number(e.target.value)}/></p>
                 <button onClick={regist}>Regisztrálok</button>
                 <button onClick={handle_login}>Belépek</button>
