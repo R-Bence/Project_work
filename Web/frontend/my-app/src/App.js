@@ -10,11 +10,12 @@ import About from './components/About/about';
 //Termékek
 import Result from './components/search_bar/result';
 import Brands from './components/products/brands'
-import Focus_product from './components/products/focus_product'
+import Focus_product from './components/products/focus_product';
 import Footer from './components/footer/footer';
 
 //Order/Cart
-import Cart from './components/cart/cart'
+import Cart from './components/cart/cart';
+import MyOrder from './components/cart/orders';
 //Auth
 import Login from './components/Reg_Log/login';
 import Profile from './components/Reg_Log/profile';
@@ -26,7 +27,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [loggedIn, set_loggedIn] = useState(sessionStorage.getItem('login'));
   const [userId, setUserId] = useState('');
-
+  const [addres, setAddres] = useState('');
 
   const [cart, set_cart] = useState([]);
 
@@ -50,15 +51,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Outlet/>}>
             <Route index element={<Home/>} />
-            <Route path='/products' element={<Products/>} />
+            <Route path='/products' element={<Products loggedIn={loggedIn} add_To_cart={add_To_cart}/>} />
             <Route path='/about' element={<About/>}/>
             <Route path='/products/search' element={<Result/>}/>
             <Route path='/products/brands' element={<Brands/>}/>
-            <Route path='/products/:id' element={<Focus_product add_To_cart={add_To_cart} loggedIn={loggedIn}/>}/>
             <Route path='/auth/login' element={<Login loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
-            <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn} userId={userId} setUserId={setUserId}/>}/>
+            <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn} userId={userId} setUserId={setUserId} addres={addres} setAddres={setAddres}/>}/>
             <Route path='/auth/registration' element={<Regist_form loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
-            <Route path='/cart' element={<Cart cart={cart} loggedIn={loggedIn} userId={userId} set_cart={set_cart}/> }/>
+            <Route path='/cart' element={<Cart cart={cart} loggedIn={loggedIn} userId={userId} set_cart={set_cart} address={addres}/> }/>
+            <Route path='/auth/myorders' element={<MyOrder userId={userId}/>}/>
             <Route path='*' element={<NoPage/>}/>
         </Route>
       </Routes>

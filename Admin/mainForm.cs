@@ -74,7 +74,7 @@ namespace Login
             {
                 conn.Open();
                 table_name = "base";
-                MySqlCommand cmd = new MySqlCommand($"Select * from mobil.product_all_details", conn);
+                MySqlCommand cmd = new MySqlCommand($"Select * from mobil.base", conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -422,12 +422,19 @@ namespace Login
 
             }
         }
-
+            
         private void add_product_Click(object sender, EventArgs e)
         {
             addData add = new addData();
             add.table_name = table_name;
             add.ShowDialog();
+            ReloadDataGridView();
+        }
+
+        private void help_btn_Click(object sender, EventArgs e)
+        {
+            helpForm help = new helpForm();
+            help.ShowDialog();
         }
     }
 }

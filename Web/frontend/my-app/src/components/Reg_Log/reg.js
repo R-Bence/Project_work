@@ -12,6 +12,9 @@ export default function Regist_form(){
     const [pass, set_pass] = useState('');
     const [pass2, set_pass2] = useState('');
     const [number, set_number] = useState('');
+    const [postcode, setPostcode] = useState('');
+    const [city, setCity] = useState('');
+    const [street, setStreet] = useState('');
     const [msg, set_msg] = useState('');
 
     const regist = () => {
@@ -24,6 +27,9 @@ export default function Regist_form(){
             "email" : email,
             "pass" : pass,
             "number" : number,
+            "postcode": postcode,
+            "city": city,
+            "street": street
             }
             console.log(data)
             http.regist(data)
@@ -44,6 +50,9 @@ export default function Regist_form(){
                 <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass(e.target.value)}/></p>
                 <p>Jelszó: <input type='password' placeholder='Jelszó' onChange={(e) => set_pass2(e.target.value)}/></p>
                 <p>Telefonszám: <input type='tel' placeholder='+36201234567' onChange={(e) => set_number(e.target.value)}/></p>
+                <p>Írányító szám: <input type='number' placeholder='1016' onChange={(e) => setPostcode(e.target.value)}/></p>
+                <p>Város: <input type='text' placeholder='Budapest' onChange={(e)=> setCity(e.target.value)}/></p>
+                <p>Utca, házszám: <input type='text' placeholder='Aladár utca 10' onChange={(e)=> setStreet(e.target.value)}/></p>
                 <button onClick={regist}>Regisztrálok</button>
                 <button onClick={handle_login}>Belépek</button>
             </div>

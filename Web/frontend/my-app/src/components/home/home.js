@@ -57,31 +57,31 @@ export default function Home() {
     <Container>
         <Row>
             <Col>
-                <Card style={{ width: '18rem ', height:'24rem'}}>
+                <Card className='card'>
                     <Card.Img variant="top" src={asuslogo} className='card-img-custom-brand' />
                         <Card.Body>
                         <Card.Title>Asus</Card.Title>
                         <Card.Text>
                             Tapasztald meg az Asus okoseszközök teljesítményét és stílusát! 
                         </Card.Text>
-                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=asus`)}>Megnézem</Button>
+                        <Button variant="primary" className='main_btn' onClick={ () => navigate(`/products/search?brand=asus`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
             <Col>
-            <Card style={{ width: '18rem', height:'24rem' }}>
+            <Card className='card'>
                     <Card.Img variant="top" src={huaweilogo} className='card-img-custom-brand' />
                         <Card.Body>
                         <Card.Title>Huawei</Card.Title>
                         <Card.Text>
                             Fedezd fel a Huawei okostelefonok világát, ahol a kifinomult dizájn találkozik a csúcsteljesítménnyel.
                         </Card.Text>
-                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=huawei`)}>Megnézem</Button>
+                        <Button variant="primary" className='main_btn' onClick={ () => navigate(`/products/search?brand=huawei`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
             <Col>
-            <Card style={{ width: '18rem', height:'24rem' }}>
+            <Card className='card'>
                     <Card.Img variant="top" src={applelogo} className='card-img-custom-brand'/>
                         <Card.Body>
                         <Card.Title>Apple</Card.Title>
@@ -89,12 +89,12 @@ export default function Home() {
                         Az Apple termékei a dizájn és funkcionalitás tökéletes egyensúlyát képviselik.
                         Éld át a magas minőségű élményt az iPhone-nal.
                         </Card.Text>
-                        <Button variant="primary" onClick={ () => navigate(`/products/search?brand=apple`)}>Megnézem</Button>
+                        <Button variant="primary" className='main_btn' onClick={ () => navigate(`/products/search?brand=apple`)}>Megnézem</Button>
                     </Card.Body>
                 </Card>
             </Col>
             <Col>
-            <Card style={{ width: '18rem', height:'24rem' }}>
+            <Card className='card'>
                     <Card.Img variant="top" src={sonylogo} className='card-img-custom-brand'/>
                         <Card.Body>
                         <Card.Title>Sony</Card.Title>

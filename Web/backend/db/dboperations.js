@@ -113,9 +113,22 @@ async function get_user_profil(email){
     });
 }
 
+async function getOrders(id){
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM mobil.rendel where user_id = ? and (order_status =1 or order_status =2);',id, (error, results)=>{
+            if(error){
+                reject(error);
+            }
+            else{
+                resolve(results);
+            }
+        })
+    })
+}
+
 async function reg_new_user(data){
     return new Promise((resolve, reject) =>{
-        pool.query('INSERT INTO mobil.user (user_name,user_email, user_tel, user_pass, user_type) values (?,?,?,SHA2(?,256),1)',[data.name, data.email,data.number,data.pass], (error,results)=>{
+        pool.query('INSERT INTO mobil.user (user_name,user_email, user_tel, user_pass, user_type, postcode, city, street) values (?,?,?,SHA2(?,256),1, ?, ?, ?)',[data.name, data.email,data.number,data.pass,data.postcode, data.city, data.street], (error,results)=>{
             if(error){
                 reject(error);
             }
@@ -126,44 +139,80 @@ async function reg_new_user(data){
     })
 }
 
-async function update_user_prof(data){
+async function update_user_prof(data) {
     return new Promise((resolve, reject) => {
         let sql = 'update mobil.user set ';
         let arr = [];
-        if(data.name){
-            sql+= 'user_name =? '
+        if (data.name) {
+            sql += 'user_name = ?, ';
             arr.push(data.name);
         }
-        if(data.email){
-            sql+=' user_email= ? '
+        if (data.email) {
+            sql += 'user_email = ?, ';
             arr.push(data.email);
         }
-        if(data.pass){
-          sql+=' user_pass= SHA2(?,256) '
-          arr.push(data.pass);
+        if (data.pass) {
+            sql += 'user_pass = SHA2(?, 256), ';
+            arr.push(data.pass);
         }
-        if(data.number){
-            sql+=' user_tel= ? '
+        if (data.number) {
+            sql += 'user_tel = ?, ';
             arr.push(data.number);
-          }
-        sql += ' where user_id = ? '
+        }
+        if (data.postcode) {
+            sql += 'postcode = ?, ';
+            arr.push(data.postcode);
+        }
+        if (data.city) {
+            sql += 'city = ?, ';
+            arr.push(data.city);
+        }
+        if (data.street) {
+            sql += 'street = ?, ';
+            arr.push(data.street);
+        }
+        sql = sql.slice(0, -2);
+        sql += ' where user_id = ? ';
         arr.push(data.id);
         console.log(sql);
-        pool.query(sql,arr,(error, elements) =>
-        {
-            if(error) {return reject(error)}
+        pool.query(sql, arr, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
             return resolve(elements);
         });
     });
-  };
+};
 
-async function order(data){
-    return new Promise((resolve, reject) =>{
-        data.forEach(element => {
-            console.log(element);
+async function order(data) {
+    return new Promise((resolve, reject) => {
+        pool.query('INSERT INTO `mobil`.`order` (`user_id`, `orderLocation`, `status`) VALUES (?, ?, 1)', [data.user_id, data.addres], (error, results) => {
+            if (error) {
+                return reject(error);
+            }
+            const lastOrderId = results.insertId;
+            data.phone.forEach(element => {
+                pool.query('INSERT INTO `mobil`.`base_conn_order` (`product_id`, `order_id`, `db`) VALUES (?, ?, ?)', [element.products.base_id, lastOrderId, element.quantity], (error, results) => {
+                    if (error) {
+                        return reject(error);
+                    }
+                })
+                pool.query('SELECt db from `mobil`.`base` where `base_id` = ?',[element.products.base_id], (error, results) =>{
+                    if (error) {
+                        return reject(error);
+                    }
+                    const newQuantity = results[0].db - element.quantity;
+                    pool.query('UPDATE `mobil`.`base` SET `db` = ? WHERE (`base_id` = ?);', [newQuantity, element.products.base_id]);
+                })
+            })
+            console.log("Sikeresen beszúrva az adatok a base_conn_order táblába.");
+            return resolve('Siker');
         });
-    })
-}  
+    });
+}
+
+
+
 
 
 module.exports ={
@@ -176,5 +225,6 @@ module.exports ={
     update_user_prof,
     all_brand,
     all_details,
-    order
+    order,
+    getOrders
 }

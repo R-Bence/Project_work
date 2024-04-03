@@ -51,4 +51,21 @@ router.patch('/update', (req,res)=>{
     .catch(error => res.send(error));
 })
 
+router.post('/orders', (req,res) =>{
+    DB.getOrders(req.body.user_id)
+    .then(
+        adat => {
+            if(adat.affectedRows == 0){
+                res.status(404);
+            }
+            else{
+                res.json(adat);
+            }
+        }
+    )
+    .catch(error => res.send(error));
+})
+
+
+
 module.exports = router;

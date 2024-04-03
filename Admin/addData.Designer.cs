@@ -30,8 +30,8 @@ namespace Login
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.close = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,13 @@ namespace Login
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 59);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(359, 469);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
             // close
             // 
             this.close.BackColor = System.Drawing.Color.Red;
@@ -60,13 +67,6 @@ namespace Login
             this.close.Text = "X";
             this.close.UseVisualStyleBackColor = false;
             this.close.Click += new System.EventHandler(this.close_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 59);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(359, 469);
-            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // addData
             // 

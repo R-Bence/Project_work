@@ -7,7 +7,7 @@ import './product.scss';
 
 import Searc_bar from '../search_bar/search';
 
-export default function Termekek() {
+export default function Termekek({loggedIn, add_To_cart}) {
   const [senddata, setData] = useState([]);
   const [msg, setmsg] = useState('');
 
@@ -46,7 +46,7 @@ export default function Termekek() {
       </Container>
       <Container className='Product_all_list'>
         <Row xs={1} md={2} lg={3} xl={4}>
-            <Cards data={senddata}/>
+            <Cards data={senddata} loggedIn={loggedIn} add_To_cart={add_To_cart}/>
         </Row>
       </Container>
     </>

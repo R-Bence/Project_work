@@ -34,7 +34,10 @@ namespace Login
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        column.Add(reader.GetString("column_name"));
+                        if (!reader.GetString("column_name").Contains("id"))
+                        {
+                            column.Add(reader.GetString("column_name"));
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -96,15 +99,30 @@ namespace Login
                 if (textBox == null || textBox.Text == "")
                 {
                     all_fill = true;
+                    break;
                 }
 
                 if (darab == column.Count())
                 {
-                    values += $"'{textBox.Text}'";
+                    if (i.Contains("pass"))
+                    {
+                        values += $"SHA2('{textBox.Text}',256)";
+                    }
+                    else
+                    {
+                        values += $"'{textBox.Text}'";
+                    }
                 }
                 else
                 {
-                    values += $"'{textBox.Text}',";
+                    if (i.Contains("pass"))
+                    {
+                        values += $"SHA2('{textBox.Text}',256),";
+                    }
+                    else
+                    {
+                        values += $"'{textBox.Text}',";
+                    }
                 }
             }
             darab = 0;
@@ -117,6 +135,7 @@ namespace Login
                     foreach (string i in column)
                     {
                         darab++;
+
                         if (darab == column.Count())
                         {
                             oszl += $"{i}";
@@ -131,6 +150,7 @@ namespace Login
                     if (affectedRows > 0)
                     {
                         MessageBox.Show("Sikeresen hozzáadva az adatok.");
+                        this.Close();
                     }
                     else
                     {
