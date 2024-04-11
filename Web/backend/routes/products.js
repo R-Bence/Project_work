@@ -12,6 +12,12 @@ router.get('/page/:pageNo', (req,res)=>{
     let oldal = Number(req.params.pageNo)
 })
 
+router.get('/max', (req,res) =>{
+    Db.GetMaxPrice()
+    .then(data => res.json(data))
+    .catch(error => res.send(error)) 
+})
+
 //Márkák lekérése
 router.get('/brands', (req,res) =>{
     Db.all_brand()

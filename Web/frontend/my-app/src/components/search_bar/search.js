@@ -7,10 +7,11 @@ import './search.scss';
 const SearchComponent = () => {
     const [keyword, setKeyword] = useState('');
     const [brand, setBrand] = useState('');
-    const [maxprice, setMaxPrice] = useState('');
+    const [maxprice, setMaxPrice] = useState(1);
     const [data, set_data] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const [max, setMax] = useState('');
 
     useEffect(() => {
         frissit();
@@ -24,11 +25,17 @@ const SearchComponent = () => {
         try {
             const response = await Service.get_brand();
             set_data(response.data);
+            const responseMax = await Service.getMax();
+            setMax(responseMax.data);
             console.log('A betöltés sikeres');
         } catch (error) {
             console.log(error.message);
         }
     };
+
+    useEffect(() =>{
+        frissit();
+    },[])
 
     const handleSearch = () => {
         let fil = {};
@@ -76,7 +83,7 @@ const SearchComponent = () => {
                     <input className='mx-2'
                         type='range' 
                         min='0' 
-                        max='100000' 
+                        max={max} 
                         step='1' 
                         value={maxprice}
                         onChange={(e) => {

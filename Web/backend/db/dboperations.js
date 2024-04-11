@@ -14,6 +14,19 @@ async function allProduct() {
     });
 }
 
+async function GetMaxPrice(){
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM mobil.get_max_price',(error, elements) =>{
+            if (error) {
+                console.log(error);
+                return reject(error)
+            }
+            console.log(elements[0].price)
+            return resolve(elements[0].price);
+        })
+    })
+}
+
 async function all_details(id) {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.product_all_details where base_id = ?;',[id], (error, elements) => {
@@ -239,5 +252,6 @@ module.exports ={
     all_brand,
     all_details,
     order,
-    getOrders
+    getOrders,
+    GetMaxPrice
 }

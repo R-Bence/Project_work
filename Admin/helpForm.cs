@@ -27,9 +27,9 @@ namespace Login
         private void send_Click(object sender, EventArgs e)
         {
             string mail = "mobilteszt@outlook.hu";
-            string subject = "Fontos információk a projekt részleteiről";
-            string body = "Kedves Kollégák,\n\nSzeretném megosztani veletek a legfrissebb fejleményeket a projektünkkel kapcsolatban. Kérlek, olvassátok el az alábbi részleteket, és jelezzétek vissza, ha van bármi kérdésetek vagy észrevételetek.\n\nKöszönöm a figyelmet és az együttműködést!\n\nÜdvözlettel,\n[megadható a neved vagy a feladó neve]";
             string password = "ASDfgh123";
+            string subject = subject_txtbox.Text;
+            string body = body_txtbox.Text;
 
             try
             {       
@@ -43,7 +43,7 @@ namespace Login
                 sc.Credentials = new System.Net.NetworkCredential(mail, password);
                 sc.EnableSsl = true;
                 sc.Send(mm);
-                MessageBox.Show("Az email elküldve");
+                MessageBox.Show("Az email sikeresen elküldve");
                 this.Close();
             }
             catch (Exception ex)

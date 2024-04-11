@@ -48,10 +48,10 @@ namespace Login
             // 
             this.body_txtbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.body_txtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.body_txtbox.Location = new System.Drawing.Point(16, 290);
-            this.body_txtbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.body_txtbox.Location = new System.Drawing.Point(16, 234);
+            this.body_txtbox.Margin = new System.Windows.Forms.Padding(4);
             this.body_txtbox.Name = "body_txtbox";
-            this.body_txtbox.Size = new System.Drawing.Size(591, 248);
+            this.body_txtbox.Size = new System.Drawing.Size(591, 304);
             this.body_txtbox.TabIndex = 0;
             this.body_txtbox.Text = "";
             // 
@@ -60,7 +60,7 @@ namespace Login
             this.send.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.send.Font = new System.Drawing.Font("Perpetua Titling MT", 11F, System.Drawing.FontStyle.Bold);
             this.send.Location = new System.Drawing.Point(437, 549);
-            this.send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.send.Margin = new System.Windows.Forms.Padding(4);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(171, 41);
             this.send.TabIndex = 1;
@@ -73,7 +73,7 @@ namespace Login
             this.mail_txtbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mail_txtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.mail_txtbox.Location = new System.Drawing.Point(155, 60);
-            this.mail_txtbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mail_txtbox.Margin = new System.Windows.Forms.Padding(4);
             this.mail_txtbox.Name = "mail_txtbox";
             this.mail_txtbox.Size = new System.Drawing.Size(393, 28);
             this.mail_txtbox.TabIndex = 2;
@@ -83,7 +83,7 @@ namespace Login
             this.subject_txtbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.subject_txtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.subject_txtbox.Location = new System.Drawing.Point(155, 148);
-            this.subject_txtbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subject_txtbox.Margin = new System.Windows.Forms.Padding(4);
             this.subject_txtbox.Name = "subject_txtbox";
             this.subject_txtbox.Size = new System.Drawing.Size(393, 28);
             this.subject_txtbox.TabIndex = 3;
@@ -114,7 +114,7 @@ namespace Login
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(16, 262);
+            this.label3.Location = new System.Drawing.Point(16, 205);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 25);
@@ -159,7 +159,7 @@ namespace Login
             this.pass_txtbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pass_txtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.pass_txtbox.Location = new System.Drawing.Point(155, 97);
-            this.pass_txtbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pass_txtbox.Margin = new System.Windows.Forms.Padding(4);
             this.pass_txtbox.Name = "pass_txtbox";
             this.pass_txtbox.PasswordChar = '*';
             this.pass_txtbox.Size = new System.Drawing.Size(393, 28);
@@ -192,7 +192,7 @@ namespace Login
             this.Controls.Add(this.send);
             this.Controls.Add(this.body_txtbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "helpForm";
             this.Text = "helpForm";
             this.panel1.ResumeLayout(false);

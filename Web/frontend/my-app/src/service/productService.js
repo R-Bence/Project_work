@@ -8,6 +8,10 @@ const get_brand = () => {
     return http.get(`/products/brands`);
 }
 
+const getMax = () =>{
+    return http.get('/products/max');
+}
+
 const postSearch = (fil) =>{
     return http.post(`/products/search`,fil)
 }
@@ -35,7 +39,8 @@ const Pro_service = {
     regist,
     modify,
     get_details,
-    final_order
+    final_order,
+    getMax
 };
 
 export default Pro_service;
