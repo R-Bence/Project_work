@@ -10,7 +10,7 @@ router.post('/login', function(req, res,next){
     .then(data => data[0])
     .then(data => {
         const packet = {"email": data.user_email}
-        const token = jwt.sign(packet, authconf.secret, {expiresIn: "1800s"});
+        const token = jwt.sign(packet, authconf.secret, {expiresIn: "3600s"});
         req.email = data.email;
         res.status(200).json(
             {

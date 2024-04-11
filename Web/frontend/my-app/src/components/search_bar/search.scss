@@ -13,12 +13,12 @@ button{
 }
 
 .search_btn{
-    @extend .main_btn;
+    @extend .main-btn;
     margin-bottom: 20px
 }
 
 .fill_delete{
-    @extend .main_btn;
+    @extend .main-btn;
     background-color: #C5785C ;
 }
 

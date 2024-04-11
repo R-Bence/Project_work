@@ -30,9 +30,9 @@ namespace Login
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.logout_btn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.getbrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -49,23 +49,22 @@ namespace Login
             this.getbrandBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.getbrandTableAdapter1 = new Login.osszesTableAdapters.getbrandTableAdapter();
             this.usersBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.otherT_cbox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.help_btn = new System.Windows.Forms.Button();
             this.minimize = new System.Windows.Forms.Button();
-            this.name_txt_label = new System.Windows.Forms.Label();
             this.fils_combo_box = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.search_box = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.exit_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.delete_btn = new System.Windows.Forms.Button();
             this.add_product = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.help_btn = new System.Windows.Forms.Button();
+            this.userT_btn = new System.Windows.Forms.Button();
+            this.orderT_btn = new System.Windows.Forms.Button();
+            this.productT_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getbrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asd)).BeginInit();
@@ -87,10 +86,10 @@ namespace Login
             this.logout_btn.BackColor = System.Drawing.SystemColors.Control;
             this.logout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logout_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold);
-            this.logout_btn.Location = new System.Drawing.Point(-1, 382);
-            this.logout_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logout_btn.Location = new System.Drawing.Point(-1, 470);
+            this.logout_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logout_btn.Name = "logout_btn";
-            this.logout_btn.Size = new System.Drawing.Size(184, 27);
+            this.logout_btn.Size = new System.Drawing.Size(245, 33);
             this.logout_btn.TabIndex = 0;
             this.logout_btn.Text = "Kijelentkezés";
             this.logout_btn.UseVisualStyleBackColor = false;
@@ -99,41 +98,41 @@ namespace Login
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.GridColor = System.Drawing.Color.MediumAquamarine;
-            this.dataGridView1.Location = new System.Drawing.Point(183, 45);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(244, 55);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(10);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(10);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(755, 366);
+            this.dataGridView1.Size = new System.Drawing.Size(1007, 450);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
             // 
@@ -203,25 +202,24 @@ namespace Login
             this.usersBindingSource2.DataMember = "users";
             this.usersBindingSource2.DataSource = this.osszesBindingSource;
             // 
-            // comboBox1
+            // otherT_cbox
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(34, 261);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(116, 26);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.otherT_cbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.otherT_cbox.FormattingEnabled = true;
+            this.otherT_cbox.Location = new System.Drawing.Point(45, 321);
+            this.otherT_cbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.otherT_cbox.Name = "otherT_cbox";
+            this.otherT_cbox.Size = new System.Drawing.Size(153, 30);
+            this.otherT_cbox.TabIndex = 6;
+            this.otherT_cbox.SelectedIndexChanged += new System.EventHandler(this.otherT_cbox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(32, 245);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(43, 302);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(90, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Egyéb táblák";
             // 
@@ -230,20 +228,34 @@ namespace Login
             this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.panel1.Controls.Add(this.help_btn);
             this.panel1.Controls.Add(this.minimize);
-            this.panel1.Controls.Add(this.name_txt_label);
             this.panel1.Controls.Add(this.fils_combo_box);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.search_box);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.exit_btn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(-1, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(939, 45);
+            this.panel1.Size = new System.Drawing.Size(1252, 55);
             this.panel1.TabIndex = 10;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
+            // 
+            // help_btn
+            // 
+            this.help_btn.BackColor = System.Drawing.Color.DarkGray;
+            this.help_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.help_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.help_btn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.help_btn.Location = new System.Drawing.Point(1087, 14);
+            this.help_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.help_btn.Name = "help_btn";
+            this.help_btn.Size = new System.Drawing.Size(47, 31);
+            this.help_btn.TabIndex = 13;
+            this.help_btn.Text = "?";
+            this.help_btn.UseVisualStyleBackColor = false;
+            this.help_btn.Click += new System.EventHandler(this.help_btn_Click);
             // 
             // minimize
             // 
@@ -251,55 +263,43 @@ namespace Login
             this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.minimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.minimize.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.minimize.Location = new System.Drawing.Point(854, 11);
-            this.minimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.minimize.Location = new System.Drawing.Point(1139, 14);
+            this.minimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(35, 25);
+            this.minimize.Size = new System.Drawing.Size(47, 31);
             this.minimize.TabIndex = 12;
             this.minimize.Text = "_";
             this.minimize.UseVisualStyleBackColor = false;
             this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
-            // name_txt_label
-            // 
-            this.name_txt_label.AutoSize = true;
-            this.name_txt_label.Font = new System.Drawing.Font("Perpetua Titling MT", 10F);
-            this.name_txt_label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.name_txt_label.Location = new System.Drawing.Point(626, 17);
-            this.name_txt_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.name_txt_label.Name = "name_txt_label";
-            this.name_txt_label.Size = new System.Drawing.Size(36, 16);
-            this.name_txt_label.TabIndex = 11;
-            this.name_txt_label.Text = "Név";
-            // 
             // fils_combo_box
             // 
             this.fils_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.fils_combo_box.FormattingEnabled = true;
-            this.fils_combo_box.Location = new System.Drawing.Point(417, 11);
-            this.fils_combo_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fils_combo_box.Location = new System.Drawing.Point(556, 14);
+            this.fils_combo_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fils_combo_box.Name = "fils_combo_box";
-            this.fils_combo_box.Size = new System.Drawing.Size(116, 26);
+            this.fils_combo_box.Size = new System.Drawing.Size(153, 30);
             this.fils_combo_box.TabIndex = 9;
             this.fils_combo_box.SelectedIndexChanged += new System.EventHandler(this.fils_combo_box_SelectedIndexChanged);
             // 
-            // textBox1
+            // search_box
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(274, 11);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 26);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.search_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.search_box.Location = new System.Drawing.Point(365, 14);
+            this.search_box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.search_box.Name = "search_box";
+            this.search_box.Size = new System.Drawing.Size(185, 30);
+            this.search_box.TabIndex = 3;
+            this.search_box.TextChanged += new System.EventHandler(this.search_box_TextChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Login.Properties.Resources.Logo_pic;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 5);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(61, 46);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -313,10 +313,10 @@ namespace Login
             this.exit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.exit_btn.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.exit_btn.Location = new System.Drawing.Point(894, 11);
-            this.exit_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exit_btn.Location = new System.Drawing.Point(1192, 14);
+            this.exit_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.exit_btn.Name = "exit_btn";
-            this.exit_btn.Size = new System.Drawing.Size(35, 24);
+            this.exit_btn.Size = new System.Drawing.Size(47, 30);
             this.exit_btn.TabIndex = 1;
             this.exit_btn.Text = "X";
             this.exit_btn.UseVisualStyleBackColor = false;
@@ -327,10 +327,9 @@ namespace Login
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Perpetua Titling MT", 15F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Cyan;
-            this.label2.Location = new System.Drawing.Point(44, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(59, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 24);
+            this.label2.Size = new System.Drawing.Size(205, 30);
             this.label2.TabIndex = 0;
             this.label2.Text = "Admin panel";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseDown);
@@ -340,34 +339,34 @@ namespace Login
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.delete_btn);
             this.panel2.Controls.Add(this.add_product);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.userT_btn);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Location = new System.Drawing.Point(-1, 45);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Controls.Add(this.otherT_cbox);
+            this.panel2.Controls.Add(this.orderT_btn);
+            this.panel2.Controls.Add(this.productT_btn);
+            this.panel2.Location = new System.Drawing.Point(-1, 55);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(184, 366);
+            this.panel2.Size = new System.Drawing.Size(245, 450);
             this.panel2.TabIndex = 11;
             // 
-            // button4
+            // delete_btn
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.Control;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = global::Login.Properties.Resources.file_reduce_line;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 187);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(184, 39);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Sor törlése";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.delete_btn.BackColor = System.Drawing.SystemColors.Control;
+            this.delete_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.delete_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delete_btn.Image = global::Login.Properties.Resources.file_reduce_line;
+            this.delete_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.delete_btn.Location = new System.Drawing.Point(0, 230);
+            this.delete_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.delete_btn.Name = "delete_btn";
+            this.delete_btn.Size = new System.Drawing.Size(245, 48);
+            this.delete_btn.TabIndex = 10;
+            this.delete_btn.Text = "Sor törlése";
+            this.delete_btn.UseVisualStyleBackColor = false;
+            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
             // 
             // add_product
             // 
@@ -376,90 +375,75 @@ namespace Login
             this.add_product.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_product.Image = global::Login.Properties.Resources.file_add_line;
             this.add_product.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.add_product.Location = new System.Drawing.Point(0, 143);
-            this.add_product.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.add_product.Location = new System.Drawing.Point(0, 176);
+            this.add_product.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.add_product.Name = "add_product";
-            this.add_product.Size = new System.Drawing.Size(184, 39);
+            this.add_product.Size = new System.Drawing.Size(245, 48);
             this.add_product.TabIndex = 9;
             this.add_product.Text = "Sor felvétele";
             this.add_product.UseVisualStyleBackColor = false;
             this.add_product.Click += new System.EventHandler(this.add_product_Click);
             // 
-            // button2
+            // userT_btn
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Control;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold);
-            this.button2.Image = global::Login.Properties.Resources.id_card_line;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(184, 38);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Felhasználók";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.userT_btn.BackColor = System.Drawing.SystemColors.Control;
+            this.userT_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.userT_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold);
+            this.userT_btn.Image = global::Login.Properties.Resources.id_card_line;
+            this.userT_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.userT_btn.Location = new System.Drawing.Point(0, 0);
+            this.userT_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userT_btn.Name = "userT_btn";
+            this.userT_btn.Size = new System.Drawing.Size(245, 47);
+            this.userT_btn.TabIndex = 1;
+            this.userT_btn.Text = "Felhasználók";
+            this.userT_btn.UseVisualStyleBackColor = false;
+            this.userT_btn.Click += new System.EventHandler(this.userT_btn_Click);
             // 
-            // button1
+            // orderT_btn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::Login.Properties.Resources.luggage_cart_line;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 87);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 39);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Rendelések";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.orderT_btn.BackColor = System.Drawing.SystemColors.Control;
+            this.orderT_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.orderT_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orderT_btn.Image = global::Login.Properties.Resources.luggage_cart_line;
+            this.orderT_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.orderT_btn.Location = new System.Drawing.Point(0, 107);
+            this.orderT_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.orderT_btn.Name = "orderT_btn";
+            this.orderT_btn.Size = new System.Drawing.Size(245, 48);
+            this.orderT_btn.TabIndex = 8;
+            this.orderT_btn.Text = "Rendelések";
+            this.orderT_btn.UseVisualStyleBackColor = false;
+            this.orderT_btn.Click += new System.EventHandler(this.orderT_btn_Click);
             // 
-            // button3
+            // productT_btn
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Control;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::Login.Properties.Resources.store_3_line;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 43);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(184, 39);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Termékek";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // help_btn
-            // 
-            this.help_btn.BackColor = System.Drawing.Color.DarkGray;
-            this.help_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.help_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.help_btn.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.help_btn.Location = new System.Drawing.Point(815, 11);
-            this.help_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.help_btn.Name = "help_btn";
-            this.help_btn.Size = new System.Drawing.Size(35, 25);
-            this.help_btn.TabIndex = 13;
-            this.help_btn.Text = "?";
-            this.help_btn.UseVisualStyleBackColor = false;
-            this.help_btn.Click += new System.EventHandler(this.help_btn_Click);
+            this.productT_btn.BackColor = System.Drawing.SystemColors.Control;
+            this.productT_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.productT_btn.Font = new System.Drawing.Font("Perpetua Titling MT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productT_btn.Image = global::Login.Properties.Resources.store_3_line;
+            this.productT_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.productT_btn.Location = new System.Drawing.Point(0, 53);
+            this.productT_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.productT_btn.Name = "productT_btn";
+            this.productT_btn.Size = new System.Drawing.Size(245, 48);
+            this.productT_btn.TabIndex = 2;
+            this.productT_btn.Text = "Termékek";
+            this.productT_btn.UseVisualStyleBackColor = false;
+            this.productT_btn.Click += new System.EventHandler(this.productT_btn_Click);
             // 
             // mainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(938, 410);
+            this.ClientSize = new System.Drawing.Size(1251, 505);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.logout_btn);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menü";
@@ -487,8 +471,8 @@ namespace Login
         #endregion
 
         private System.Windows.Forms.Button logout_btn;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button userT_btn;
+        private System.Windows.Forms.Button productT_btn;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource asdBindingSource;
         private asd asd;
@@ -504,21 +488,19 @@ namespace Login
         private System.Windows.Forms.BindingSource getbrandBindingSource1;
         private osszesTableAdapters.getbrandTableAdapter getbrandTableAdapter1;
         private System.Windows.Forms.BindingSource usersBindingSource2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox otherT_cbox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button orderT_btn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button exit_btn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox search_box;
         private System.Windows.Forms.ComboBox fils_combo_box;
-        private System.Windows.Forms.Label name_txt_box;
-        private System.Windows.Forms.Label name_txt_label;
         private System.Windows.Forms.Button minimize;
         private System.Windows.Forms.Button add_product;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button delete_btn;
         private System.Windows.Forms.Button help_btn;
     }
 }

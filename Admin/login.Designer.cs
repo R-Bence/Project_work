@@ -31,20 +31,20 @@ namespace Login
         {
             this.txt_user_email = new System.Windows.Forms.TextBox();
             this.txt_user_pass = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.login_btn = new System.Windows.Forms.Button();
+            this.delete_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.minimize = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.eyes = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.minimize = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -79,33 +79,33 @@ namespace Login
             this.txt_user_pass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_Onpress);
             this.txt_user_pass.Leave += new System.EventHandler(this.hide_eye);
             // 
-            // button1
+            // login_btn
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Century Schoolbook", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(78, 396);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(229, 37);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Belépés";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.login_btn.BackColor = System.Drawing.Color.White;
+            this.login_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.login_btn.Font = new System.Drawing.Font("Century Schoolbook", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.login_btn.Location = new System.Drawing.Point(78, 396);
+            this.login_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.login_btn.Name = "login_btn";
+            this.login_btn.Size = new System.Drawing.Size(229, 37);
+            this.login_btn.TabIndex = 3;
+            this.login_btn.Text = "Belépés";
+            this.login_btn.UseVisualStyleBackColor = false;
+            this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
             // 
-            // button2
+            // delete_btn
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(78, 441);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(229, 28);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Törlés";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.delete_btn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.delete_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.delete_btn.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delete_btn.Location = new System.Drawing.Point(78, 441);
+            this.delete_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.delete_btn.Name = "delete_btn";
+            this.delete_btn.Size = new System.Drawing.Size(229, 28);
+            this.delete_btn.TabIndex = 4;
+            this.delete_btn.Text = "Törlés";
+            this.delete_btn.UseVisualStyleBackColor = false;
+            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
             // 
             // panel2
             // 
@@ -136,7 +136,7 @@ namespace Login
             this.close.TabIndex = 13;
             this.close.Text = "X";
             this.close.UseVisualStyleBackColor = false;
-            this.close.Click += new System.EventHandler(this.button3_Click);
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // label1
             // 
@@ -167,6 +167,19 @@ namespace Login
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseDown);
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseMove);
             this.panel3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_header_MouseUp);
+            // 
+            // minimize
+            // 
+            this.minimize.BackColor = System.Drawing.Color.DarkGray;
+            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.minimize.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.minimize.Location = new System.Drawing.Point(281, 17);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(56, 29);
+            this.minimize.TabIndex = 16;
+            this.minimize.Text = "_";
+            this.minimize.UseVisualStyleBackColor = false;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
             // pictureBox4
             // 
@@ -241,19 +254,6 @@ namespace Login
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
-            // minimize
-            // 
-            this.minimize.BackColor = System.Drawing.Color.DarkGray;
-            this.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.minimize.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.minimize.Location = new System.Drawing.Point(281, 17);
-            this.minimize.Name = "minimize";
-            this.minimize.Size = new System.Drawing.Size(56, 29);
-            this.minimize.TabIndex = 16;
-            this.minimize.Text = "_";
-            this.minimize.UseVisualStyleBackColor = false;
-            this.minimize.Click += new System.EventHandler(this.minimize_Click);
-            // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -267,8 +267,8 @@ namespace Login
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.delete_btn);
+            this.Controls.Add(this.login_btn);
             this.Controls.Add(this.txt_user_pass);
             this.Controls.Add(this.txt_user_email);
             this.Controls.Add(this.panel3);
@@ -292,8 +292,8 @@ namespace Login
         #endregion
         private System.Windows.Forms.TextBox txt_user_email;
         private System.Windows.Forms.TextBox txt_user_pass;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button login_btn;
+        private System.Windows.Forms.Button delete_btn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;

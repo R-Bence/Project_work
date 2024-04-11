@@ -115,7 +115,7 @@ async function get_user_profil(email){
 
 async function getOrders(id){
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM mobil.rendel where user_id = ? and (order_status =1 or order_status =2);',id, (error, results)=>{
+        pool.query('SELECT * FROM mobil.rendel where user_id = ?;',id, (error, results)=>{
             if(error){
                 reject(error);
             }
@@ -128,7 +128,7 @@ async function getOrders(id){
 
 async function reg_new_user(data){
     return new Promise((resolve, reject) =>{
-        pool.query('INSERT INTO mobil.user (user_name,user_email, user_tel, user_pass, user_type, postcode, city, street) values (?,?,?,SHA2(?,256),1, ?, ?, ?)',[data.name, data.email,data.number,data.pass,data.postcode, data.city, data.street], (error,results)=>{
+        pool.query('INSERT INTO mobil.user (user_email, user_tel, user_pass, user_type, postcode, city, street) values (?,?,SHA2(?,256),1, ?, ?, ?)',[data.email,data.number,data.pass,data.postcode, data.city, data.street], (error,results)=>{
             if(error){
                 reject(error);
             }
@@ -143,10 +143,6 @@ async function update_user_prof(data) {
     return new Promise((resolve, reject) => {
         let sql = 'update mobil.user set ';
         let arr = [];
-        if (data.name) {
-            sql += 'user_name = ?, ';
-            arr.push(data.name);
-        }
         if (data.email) {
             sql += 'user_email = ?, ';
             arr.push(data.email);
@@ -186,30 +182,47 @@ async function update_user_prof(data) {
 
 async function order(data) {
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO `mobil`.`order` (`user_id`, `orderLocation`, `status`) VALUES (?, ?, 1)', [data.user_id, data.addres], (error, results) => {
+        pool.query('INSERT INTO `mobil`.`order` (`user_id`, `orderLocation`, `status`) VALUES (?, ?, 1)', [data.user_id, data.address], (error, results) => {
             if (error) {
                 return reject(error);
             }
             const lastOrderId = results.insertId;
-            data.phone.forEach(element => {
-                pool.query('INSERT INTO `mobil`.`base_conn_order` (`product_id`, `order_id`, `db`) VALUES (?, ?, ?)', [element.products.base_id, lastOrderId, element.quantity], (error, results) => {
-                    if (error) {
-                        return reject(error);
-                    }
+            const promises = data.phone.map(element => {
+                return new Promise((resolve, reject) => {
+                    pool.query('INSERT INTO `mobil`.`base_conn_order` (`product_id`, `order_id`, `db`) VALUES (?, ?, ?)', [element.products.base_id, lastOrderId, element.quantity], (error, results) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        pool.query('SELECT db FROM `mobil`.`base` WHERE `base_id` = ?', [element.products.base_id], (error, results) => {
+                            if (error) {
+                                return reject(error);
+                            }
+                            const newQuantity = results[0].db - element.quantity;
+                            if (newQuantity < 0) {
+                                return reject("Nincs elég termék raktáron a rendelés leadásához");
+                            }
+                            pool.query('UPDATE `mobil`.`base` SET `db` = ? WHERE (`base_id` = ?);', [newQuantity, element.products.base_id], (error, results) => {
+                                if (error) {
+                                    return reject(error);
+                                }
+                                resolve();
+                            });
+                        });
+                    });
+                });
+            });
+
+            Promise.all(promises)
+                .then(() => {
+                    resolve('Siker');
                 })
-                pool.query('SELECt db from `mobil`.`base` where `base_id` = ?',[element.products.base_id], (error, results) =>{
-                    if (error) {
-                        return reject(error);
-                    }
-                    const newQuantity = results[0].db - element.quantity;
-                    pool.query('UPDATE `mobil`.`base` SET `db` = ? WHERE (`base_id` = ?);', [newQuantity, element.products.base_id]);
-                })
-            })
-            console.log("Sikeresen beszúrva az adatok a base_conn_order táblába.");
-            return resolve('Siker');
+                .catch(error => {
+                    reject(error);
+                });
         });
     });
 }
+
 
 
 

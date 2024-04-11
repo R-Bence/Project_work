@@ -1,0 +1,36 @@
+@import '../../App.scss';
+
+.container {
+    align-items: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+.btn{
+    @extend .main-btn;
+}
+
+.btn:hover{
+    background-color: rgb(98, 199, 165);
+}
+
+.details-container p input{
+    padding: 5px;
+    margin: 5px;
+}   
+.details-container p{
+    font-size: larger;
+}

@@ -11,74 +11,10 @@ namespace Login
     {
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=guest;pwd=guest123@");
         string role = "";
-        string name = "";
         string id = "";
         public login()
         {
             InitializeComponent();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string user_email = txt_user_email.Text;
-            string user_pass = txt_user_pass.Text;
-
-            try
-            {
-                conn.Open();
-
-                string login_query = "SELECT user.user_id, user.user_name, user.user_email, user.user_pass, user_type.type_name FROM user INNER JOIN user_type ON user.user_type = user_type.type_id WHERE user.user_email = @user_email AND user.user_pass = SHA2(@user_pass,256) and (user_type.type_name like 'superadmin' or user_type.type_name like 'admin')";
-
-                MySqlCommand cmd = new MySqlCommand(login_query, conn);
-                cmd.Parameters.AddWithValue("@user_email", user_email);
-                cmd.Parameters.AddWithValue("@user_pass", user_pass);
-
-                MySqlDataAdapter SDA = new MySqlDataAdapter(cmd);
-
-                DataTable dtable = new DataTable();
-                SDA.Fill(dtable);
-                DataRow row = dtable.Rows[0];
-                name = row["user_name"].ToString();
-                role = row["type_name"].ToString();
-                id = row["user_id"].ToString();
-
-                if (dtable.Rows.Count > 0)
-                {
-                    mainForm mainForm = new mainForm();
-                    mainForm.return_role = role;
-                    mainForm.return_name = name;
-                    mainForm.return_id = id;
-                    mainForm.Show();
-                    this.Hide();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hibás felhasználónév vagy jelszó! " + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            txt_user_email.Text = "";
-            txt_user_pass.Text = "";
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DialogResult exit_pop;
-            exit_pop = MessageBox.Show("Biztosan ki akarsz lépni?", "Kilépés", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (exit_pop == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                this.Show();
-            }
         }
 
         private void text_Onpress(object sender, KeyEventArgs e)
@@ -92,7 +28,7 @@ namespace Login
                 }
                 else
                 {
-                    button1_Click(sender, e);
+                    login_btn_Click(sender, e);
                 }
             }
 
@@ -155,6 +91,73 @@ namespace Login
         private void minimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void login_btn_Click(object sender, EventArgs e)
+        {
+            string user_email = txt_user_email.Text;
+            string user_pass = txt_user_pass.Text;
+
+            try
+            {
+                conn.Open();
+
+                string login_query = "SELECT user.user_id, user.user_email, user.user_pass, user_type.type_name FROM user INNER JOIN user_type ON user.user_type = user_type.type_id WHERE user.user_email = @user_email AND user.user_pass = SHA2(@user_pass,256) and (user_type.type_name like 'superadmin' or user_type.type_name like 'admin')";
+
+                MySqlCommand cmd = new MySqlCommand(login_query, conn);
+                cmd.Parameters.AddWithValue("@user_email", user_email);
+                cmd.Parameters.AddWithValue("@user_pass", user_pass);
+
+                MySqlDataAdapter SDA = new MySqlDataAdapter(cmd);
+
+                DataTable dtable = new DataTable();
+                SDA.Fill(dtable);
+                DataRow row = dtable.Rows[0];
+                role = row["type_name"].ToString();
+                id = row["user_id"].ToString();
+
+                if (dtable.Rows.Count > 0)
+                {
+                    mainForm mainForm = new mainForm();
+                    mainForm.return_role = role;
+                    mainForm.return_id = id;
+                    mainForm.Show();
+                    this.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hibás felhasználónév vagy jelszó! " + ex);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            txt_user_email.Text = "";
+            txt_user_pass.Text = "";
+        }
+
+        private void close_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult exit_pop;
+            exit_pop = MessageBox.Show("Biztosan ki akarsz lépni?", "Kilépés", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (exit_pop == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

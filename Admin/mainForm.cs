@@ -16,7 +16,6 @@ namespace Login
     {
         MySqlConnection conn = new MySqlConnection("server=localhost;database=mobil;uid=web_admin;pwd=webadmin123@");
         public string return_role { get; set; }
-        public string return_name { get; set; }
         public string return_id { get; set; }
         string table_name = "";
         string fil = "";
@@ -30,7 +29,15 @@ namespace Login
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand($"SELECT * FROM {table_name}", conn);
+                MySqlCommand cmd;
+                if (table_name== "order")
+                {
+                    cmd = new MySqlCommand($"SELECT * FROM rendel", conn);
+                }
+                else
+                {
+                    cmd = new MySqlCommand($"SELECT * FROM {table_name}", conn);
+                }
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -96,7 +103,7 @@ namespace Login
             {
                 {
                     conn.Open();
-                    table_name = "rendel";
+                    table_name = "order";
                     MySqlCommand cmd = new MySqlCommand($"SELECT * FROM mobil.rendel", conn);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
@@ -130,7 +137,7 @@ namespace Login
                         if (reader.GetString("table_name") == "base" || reader.GetString("table_name") == "order" || reader.GetString("table_name") == "user" || reader.GetString("table_name") == "base_conn_order" || reader.GetString("table_name") == "get_max_price" || reader.GetString("table_name") == "get_brand" || reader.GetString("table_name") == "product_all_details" || reader.GetString("table_name") == "get_products" || reader.GetString("table_name") == "ram_fill" || reader.GetString("table_name") =="rendel") ;
                         else
                         {
-                            comboBox1.Items.Add(reader.GetString("table_name"));
+                            otherT_cbox.Items.Add(reader.GetString("table_name"));
                         }
                     }
                 }
@@ -178,37 +185,36 @@ namespace Login
             user_fill();
             tables();
             filters();
-            name_txt_label.Text = "Üdvözlöm: " + return_name;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            otherT_cbox.DropDownStyle = ComboBoxStyle.DropDownList;
             fils_combo_box.DropDownStyle = ComboBoxStyle.DropDownList;
             if (return_role != "superadmin")
             {
-                button4.Enabled = false;
+                delete_btn.Enabled = false;
                 add_product.Enabled = false;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void userT_btn_Click(object sender, EventArgs e)
         {
             user_fill();
             filters();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void productT_btn_Click(object sender, EventArgs e)
         {
             products_fill();
             filters();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void orderT_btn_Click(object sender, EventArgs e)
         {
             order_fill();
             filters();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void otherT_cbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string table_name = comboBox1.Text;
+            string table_name = otherT_cbox.Text;
             try
             {
                 conn.Open();
@@ -343,36 +349,6 @@ namespace Login
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if(textBox1.Text != "")
-            {
-                string Search_params = textBox1.Text;
-                try
-                {
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand($"Select * from {table_name} where {fil} like '%{Search_params}%'", conn);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    dataGridView1.DataSource = dataTable;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Hiba történt: {ex.Message}");
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-            else
-            {
-                ReloadDataGridView();
-            }
-
-        }
-
         private void fils_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
             fil = fils_combo_box.Text;
@@ -383,7 +359,21 @@ namespace Login
             WindowState = FormWindowState.Minimized;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void add_product_Click(object sender, EventArgs e)
+        {
+            addData add = new addData();
+            add.table_name = table_name;
+            add.ShowDialog();
+            ReloadDataGridView();
+        }
+
+        private void help_btn_Click(object sender, EventArgs e)
+        {
+            helpForm help = new helpForm();
+            help.ShowDialog();
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
         {
             string delIdInput = Microsoft.VisualBasic.Interaction.InputBox("Kérlek, adja meg a törölni kivánt ID-t:", "Törlés", "");
             if (!string.IsNullOrEmpty(delIdInput))
@@ -422,19 +412,40 @@ namespace Login
 
             }
         }
-            
-        private void add_product_Click(object sender, EventArgs e)
+
+        private void search_box_TextChanged(object sender, EventArgs e)
         {
-            addData add = new addData();
-            add.table_name = table_name;
-            add.ShowDialog();
-            ReloadDataGridView();
+            if (search_box.Text != "")
+            {
+                if (fil == "")
+                {
+                    MessageBox.Show("Ki kell választani mire akar keresni");
+                    return;
+                }
+                string Search_params = search_box.Text;
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand($"Select * from {table_name} where {fil} like '%{Search_params}%'", conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt: {ex.Message}");
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            else
+            {
+                ReloadDataGridView();
+            }
         }
 
-        private void help_btn_Click(object sender, EventArgs e)
-        {
-            helpForm help = new helpForm();
-            help.ShowDialog();
-        }
     }
 }

@@ -1,2 +1,30 @@
 @import '../products/product.scss';
 
+.table td, .table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.table tr{
+    border: 1px solid #ddd;
+}
+
+.exDate{
+    border: none;
+    box-shadow: none;
+    width: 5%;
+}
+
+.exDate:focus{
+    border: 1px solid transparent;
+    box-shadow: none;
+}
+
+.exDate-span{
+    margin-top: 5px;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;
+    border-radius: 9px;
+    height: 100px;
+}
+

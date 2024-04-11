@@ -3,17 +3,16 @@ import userService from '../../service/userService';
 import './order.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Order({showPop, userId, setShowPop}){
+export default function Order({ showPop, userId, setShowPop }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         frissit();
-      }, []);
-    
+    }, []);
+
     const frissit = async () => {
         try {
             const response = await userService.getOrders(userId);
-            console.log(response.data);
             setData(response.data);
         } catch (error) {
             console.log(error.message);
@@ -21,29 +20,40 @@ export default function Order({showPop, userId, setShowPop}){
     };
 
     return (
-        showPop ? (        
-            <div className='popup'>
+        showPop ? (
+            <div className='popup d-flex'>
                 <div className="popup-inner">
                     <button className='pop-close-btn' onClick={() => setShowPop(false)}>X</button>
-                    <div className="container">
-                      <div className="row">
-                          <div className="col-4"><h5>Kép</h5></div>
-                          <div className="col-4"><h5>Terméknév , darabszám</h5> </div>
-                          <div className="col-4"><h5>Státus</h5></div>
-                      </div>
-                      {data.length > 0 ? (
-                          data.map(order => (
-                            <div className="row">
-                              <div className="col-4"><img alt={order.name} src=""/></div>
-                              <div className="col-4"><p>{order.name} , {order.db} db</p> </div>
-                              <div className="col-4"><p>{order.status}</p></div>
-                            </div>
-                          ))
-                      ) : (<p>Nincs aktuális rendelés</p>)}
+                    <div className="table-responsive">
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Rendelés id-ja</th>
+                                    <th>Terméknév</th>
+                                    <th>Darabszám</th>
+                                    <th>Státus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.length > 0 ? (
+                                    data.map(order => (
+                                        <tr key={order.order_id}>
+                                            <td>{order.order_id}</td>
+                                            <td>{order.name}</td>
+                                            <td>{order.db} db</td>
+                                            <td>{order.status}</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="4">Nincs aktuális rendelés</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
-            </div> 
+            </div>
         ) : null
     );
 }

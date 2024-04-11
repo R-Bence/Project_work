@@ -58,7 +58,7 @@ function App() {
             <Route path='/auth/login' element={<Login loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
             <Route path='/auth/profile' element={<Profile loggedIn={loggedIn} setIslogged={set_loggedIn} userId={userId} setUserId={setUserId} addres={addres} setAddres={setAddres}/>}/>
             <Route path='/auth/registration' element={<Regist_form loggedIn={loggedIn} setIslogged={set_loggedIn}/>}/>
-            <Route path='/cart' element={<Cart cart={cart} loggedIn={loggedIn} userId={userId} set_cart={set_cart} address={addres}/> }/>
+            <Route path='/cart' element={<Cart cart={cart} loggedIn={loggedIn} userId={userId} setUserId={setUserId} set_cart={set_cart} address={addres}/> }/>
             <Route path='/auth/myorders' element={<MyOrder userId={userId}/>}/>
             <Route path='*' element={<NoPage/>}/>
         </Route>

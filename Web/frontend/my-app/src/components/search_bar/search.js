@@ -50,8 +50,8 @@ const SearchComponent = () => {
 
     return (
         <div className='d-flex container-fluid text-center pt-4 mt-3 justify-content-center search_container'>
-            <div className='row' xs={1}>
-                <div className='col-4'>
+            <div className='row'>
+                <div className='col-md-4 col-12 mb-3'>
                     <input
                         type='text'
                         placeholder='Keresés'   
@@ -60,7 +60,7 @@ const SearchComponent = () => {
                         className='mx-4 px-3'
                     />
                 </div>
-                <div className='col-4'>
+                <div className='col-md-4 col-12 mb-3'>
                     <select className='px-3' value={brand} onChange={(e) => setBrand(e.target.value)}>
                         <option value=''></option>
                         {data.map((item) => (
@@ -71,7 +71,7 @@ const SearchComponent = () => {
                     </select>
                 </div>
 
-                <div className='d-flex justify-content-center col-4'>
+                <div className='d-flex justify-content-center col-md-4 col-12 mb-3'>
                     <p className='mr-2 price'>0Ft</p>
                     <input className='mx-2'
                         type='range' 

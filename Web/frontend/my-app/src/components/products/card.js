@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Col } from 'react-bootstrap';
 import './product.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import queryString from 'query-string'; // Az URL paraméterek kezeléséhez
+
 import Popup from './focus_product';
 
-export default function Cards({ data ,loggedIn, add_To_cart}) {
+export default function Cards({ data, loggedIn, add_To_cart }) {
     const navigate = useNavigate('');
+    const location = useLocation();
     const [id, set_id] = useState('');
-    const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
+
+    const [showPopup, setShowPopup] = useState(false);
+
     const SkeletonLoader = () => (
         <Card className="skeleton-loader">
             <Card.Img className="skeleton-img"></Card.Img>
@@ -18,10 +23,26 @@ export default function Cards({ data ,loggedIn, add_To_cart}) {
         </Card>
     );
 
+    useEffect(() => {
+        const queryParams = queryString.parse(location.search);
+        const productId = queryParams.id;
+        
+        if (productId) {
+            handle_popup(productId)
+        }
+    }, [location.search]);
+
     const handle_popup = (id) => {
-        set_id(id); // Set the ID of the clicked card
-        setShowPopup(true); // Show the popup
+        set_id(id);
+        setShowPopup(true);
+        navigate(`/products/?id=${id}`);
+        document.body.style.overflow = 'hidden';
     }
+
+    useEffect(() => {
+        if(showPopup === true) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'auto';
+    }, [showPopup])
 
     return (
         <>
@@ -49,11 +70,9 @@ export default function Cards({ data ,loggedIn, add_To_cart}) {
                     </Col>
                 ))
             ) : (
-                Array.from({ length: 20 }).map((_, index) => (
-                    <Col key={index}>
-                        <SkeletonLoader />
-                    </Col>
-                ))
+                <Col>
+                    <SkeletonLoader />
+                </Col>
             )}
             {showPopup && <Popup showPopup={showPopup} setShowPopup={setShowPopup} prod_id={id} loggedIn={loggedIn} add_To_cart={add_To_cart}/>}
         </>
