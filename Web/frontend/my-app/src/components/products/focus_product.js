@@ -8,7 +8,7 @@ export default function Popup({ add_To_cart, loggedIn, showPopup, setShowPopup, 
     const [data, setData] = useState('');
     const navigate = useNavigate('');
     const [msg, setMsg] = useState('');
-    const altImages = ["https://tinyurl.com/tesztkepa", "https://tinyurl.com/tesztkepa", "https://imgs.search.brave.com/_eFVmzsFZdGAS_MtbsU6ExP7sglzw7cBBc5pI0NyrTU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWc0/LmZyZXNoZXJzbGl2/ZS5jb20vY3Jvc3N3/b3JkLzIwMjMvMDIv/Y3Jvc3N3b3JkLWNs/dWUtaG9tZS0xMDc2/MTAwNTIwLTkwMC53/ZWJw"]; // Placeholder alt images
+    const [altImages, setAltImages] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
@@ -18,13 +18,19 @@ export default function Popup({ add_To_cart, loggedIn, showPopup, setShowPopup, 
     const frissit = async () => {
         try {
             const response = await Services.get_details(prod_id);
-            console.log(response.data);
             setData(response.data[0]);
-            console.log('A betöltés sikeres');
+            console.log(response.data[0].img);
+            const images = [];
+            for (let i = 1; i <= response.data[0].img; i++) {
+                images.push(`http://localhost:8080/images/mobil_kepek/${response.data[0].base_id}%20(${i}).jpg`)
+            }
+            setAltImages(images);
+            console.log(altImages);
         } catch (error) {
             console.log(error.message);
         }
     };
+    
 
     const handleAltImageClick = (imageUrl, index) => {
         setActiveIndex(index);
@@ -45,7 +51,7 @@ export default function Popup({ add_To_cart, loggedIn, showPopup, setShowPopup, 
                                     {altImages.map((altImg, index) => (
                                         <Carousel.Item key={index}>
                                             <img
-                                                className='d-block w-100 phone-img-focus img-fluid img-thumbnail'
+                                                className='d-block phone-img-focus img-fluid img-thumbnail'
                                                 src={altImg}
                                                 alt={index}
                                             />
@@ -74,16 +80,21 @@ export default function Popup({ add_To_cart, loggedIn, showPopup, setShowPopup, 
                             <p>Ár: {data.price} Ft</p>
                             <p>{data.Darab} darab van készleten</p>
                             <p className='pt-2' style={{color: "green"}}>{msg}</p>
-                            <button className='main-btn' onClick={() => {
-                            if (loggedIn) {
-                                add_To_cart(data);
-                            } else {
-                                navigate('/auth/login');
-                                setShowPopup(false);
-                                document.body.style.overflow = 'auto';
-                            }
-                            setMsg("Sikeresen hozzáadtad a kosaradhoz!");
-                        }}>Rendelés</button>
+                            <button 
+                            className='main-btn' 
+                            onClick={() => {
+                                if (loggedIn) {
+                                    add_To_cart(data);
+                                    setMsg("Sikeresen hozzáadtad a kosaradhoz!");
+                                } else {
+                                    navigate('/auth/login');
+                                    setShowPopup(false);
+                                    document.body.style.overflow = 'auto';
+                                }
+                            }}
+                            disabled={data.Darab === 0}>
+                            Rendelés
+                            </button>
 
                         </div>
                     </div>

@@ -54,7 +54,7 @@ export default function Cards({ data, loggedIn, add_To_cart }) {
                                 <>
                                     <Card.Img
                                         variant="top"
-                                        src={"https://tinyurl.com/tesztkepa"}
+                                        src={`http://localhost:8080/images/mobil_kepek/${telefon.id}%20(1).jpg`}
                                         alt={telefon.name}
                                         className='card-img-custom'
                                     />

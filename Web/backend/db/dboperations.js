@@ -211,7 +211,13 @@ async function order(data) {
                                 return reject(error);
                             }
                             const newQuantity = results[0].db - element.quantity;
-                            if (newQuantity < 0) {
+                            if (newQuantity <= 0) {
+                                pool.query('DELETE FROM `mobil`.`base_conn_order` WHERE order_id = ?',[lastOrderId], (error,results)=>{
+                                    if(error) return reject(error);
+                                })
+                                pool.query('DELETE FROM `mobil`.`order` WHERE order_id = ?',[lastOrderId], (error,results)=>{
+                                    if(error) return reject(error);
+                                })
                                 return reject("Nincs elég termék raktáron a rendelés leadásához");
                             }
                             pool.query('UPDATE `mobil`.`base` SET `db` = ? WHERE (`base_id` = ?);', [newQuantity, element.products.base_id], (error, results) => {
@@ -236,7 +242,18 @@ async function order(data) {
     });
 }
 
-
+async function deleteAccount(id){
+    return new Promise((resolve, reject) => {
+        pool.query('DELETE FROM `mobil`.`user` WHERE user_id = ?',[id], (error, results)=>{
+            if(error){
+                reject(error);
+            }
+            else{
+                resolve(results);
+            }
+        })
+    })
+}
 
 
 
@@ -253,5 +270,6 @@ module.exports ={
     all_details,
     order,
     getOrders,
-    GetMaxPrice
+    GetMaxPrice,
+    deleteAccount
 }

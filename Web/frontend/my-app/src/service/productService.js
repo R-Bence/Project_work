@@ -32,6 +32,10 @@ const final_order = (cart) =>{
     return http.put(`/products/cart/rendel`,cart)
 }
 
+const deleteMyAccount = (id) =>{
+    return http.delete(`/auth/delete/${id}`)
+}
+
 const Pro_service = {
     getAll,
     get_brand,
@@ -40,7 +44,8 @@ const Pro_service = {
     modify,
     get_details,
     final_order,
-    getMax
+    getMax,
+    deleteMyAccount
 };
 
 export default Pro_service;

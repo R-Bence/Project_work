@@ -51,11 +51,11 @@ export default function UserProfil({userId, setUserId, addres, setAddres, logged
         });
     }, []);
 
-    const move_login = () => {
+    const moveLogin = () => {
         navigate('/auth/login')
     }
 
-    const Logout_handle = () =>{
+    const LogoutHandle = () =>{
         localStorage.removeItem('token');
         sessionStorage.removeItem('login');
         navigate('/');
@@ -92,6 +92,12 @@ export default function UserProfil({userId, setUserId, addres, setAddres, logged
       }
     }
 
+    const deleteAccountHandle= () =>{
+      Services.deleteMyAccount(userId);
+      LogoutHandle();
+    }
+
+
     return (
       <div className='text-center'>
         {!loggedIn ?
@@ -117,11 +123,11 @@ export default function UserProfil({userId, setUserId, addres, setAddres, logged
                         </div>
                     }
                   </div>
-                  <div className='col-md-4 d-block align-items-center'>
+                  <div className='col-md-3 d-block align-items-center'>
                     <button onClick={() => setShowPop(true)} className="py-2 mb-4 px-5">Rendeléseim</button>
                     <button onClick={modify_data} className="py-2 mb-4 px-3 ">Módosítások mentése</button>
-                    <button onClick={Logout_handle} className="py-2 px-5 ">Kijelentkezés</button>
-
+                    <button onClick={LogoutHandle} className="py-2 mb-4 px-5 ">Kijelentkezés</button>
+                    <button onClick={deleteAccountHandle} className='py-2 px-5 bg-danger' style={{"color": "white"}}>Törlöm a fiókom</button>
 
                   </div>
 

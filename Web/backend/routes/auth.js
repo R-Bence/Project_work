@@ -66,6 +66,10 @@ router.post('/orders', (req,res) =>{
     .catch(error => res.send(error));
 })
 
-
+router.delete('/delete/:userId', (req,res)=>{
+    DB.deleteAccount(req.params.userId)
+    .then(data => res.send(data))
+    .catch( error => res.send(error))
+})
 
 module.exports = router;

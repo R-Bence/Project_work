@@ -40,7 +40,7 @@ export default function Login({ setIslogged }) {
                 <h1 className='text-center'>Bejelentkezésk</h1>
                 <p className='text-center'>{msg}</p>
                 <div className='mb-3'>
-                    <label htmlFor='username' className='form-label'>Felhasználó név:</label>
+                    <label htmlFor='username' className='form-label'>Felhasználó email:</label>
                     <input type='text' className='form-control' id='username' onChange={(e) => setUserEmail(e.target.value)} />
                 </div>
                 <div className='mb-3'>

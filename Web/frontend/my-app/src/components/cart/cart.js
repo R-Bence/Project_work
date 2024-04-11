@@ -138,7 +138,7 @@ export default function Cart({ userId,setUserId, loggedIn, set_cart }) {
                   </div>
                 </div>
                 <div className='col-lg-6 pr-0'>
-                  <div className='d-flex'>
+                  <div className='d-flex py-2'>
                     <input type='radio' name='location' onClick={() => setOrderAdres(1)} />
                     <input
                       type='number'
@@ -159,10 +159,13 @@ export default function Cart({ userId,setUserId, loggedIn, set_cart }) {
                       className='form-control mx-2'
                     />
                   </div>
+                  {baseAddres !=="null null null" ? 
                   <div className='py-2'>
                     <input type='radio' name='location' onClick={() => setOrderAdres(2)} />
                     <label className='px-2' style={{"font-size": "18px"}}>{baseAddres}</label>
-                  </div>
+                  </div> 
+                  : "Nincs megadva alap cím"
+                  }
                   <div className='d-grid'>
                   <label>Kártyaszám</label>
                     <input type='number' onChange={(e)=>setCardNumber(e.target.value)}/>

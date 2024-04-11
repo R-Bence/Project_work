@@ -1,6 +1,7 @@
 .card {
     margin-top: 20px;
     box-shadow: 2px 2px rgba(151, 151, 151, 0.826);
+    overflow: hidden;
   }
   
   .card-body {
@@ -8,7 +9,9 @@
   }
   
   .card-img-custom {
-    object-fit: cover;
+    object-fit: contain;
+    width: 287px;
+    height: 250px;
   }
 
   .Product_all_list{
@@ -112,10 +115,10 @@
 }
 
 .phone-img-focus{
-  max-width: 350px;
+  object-fit: contain;
   height: 350px;
+  width: 350px;
   padding: 5px;
-  object-fit: cover;
 }
 
 .phone-img{
