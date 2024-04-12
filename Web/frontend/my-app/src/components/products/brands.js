@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Service from '../../service/productService';
+import Service from '../../service/Service';
 import { useEffect, useState } from 'react';
 import { Card, Col, Row, Container } from 'react-bootstrap';
 import Cards from './card';
 import { useNavigate } from 'react-router-dom';
 
 export default function Brands() {
-  const [data, set_data] = useState('');
+  const [data, setData] = useState('');
   const [msg, setmsg] = useState('');
   const navigate = useNavigate('');
 
@@ -18,7 +18,7 @@ export default function Brands() {
   const frissit = async () => {
     try {
       const response = await Service.get_brand();
-      set_data(response.data);
+      setData(response.data);
       console.log('A betöltés sikeres');
     } catch (error) {
       console.log(error.message);

@@ -1,7 +1,7 @@
-    import React from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './r_log.scss';
-import http from '../../service/productService';
+import Service from '../../service/Service';
 import { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ export default function Regist_form(){
             "street": street
             }
             console.log(data)
-            http.regist(data)
+            Service.regist(data)
             .then(res => handle_login())
             .catch(error => setMsg(error))} 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import http from '../../service/http-common';
-import Services from '../../service/productService';
+import Services from '../../service/Service';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyOrders from '../cart/orders';

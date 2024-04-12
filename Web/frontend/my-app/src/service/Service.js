@@ -36,6 +36,14 @@ const deleteMyAccount = (id) =>{
     return http.delete(`/auth/delete/${id}`)
 }
 
+const pagination = (page) =>{
+    return http.get(`/products/page/${page}`)
+}
+
+const getOrders = (id) =>{
+    return http.post(`/auth/orders`,{"user_id": id})
+}
+
 const Pro_service = {
     getAll,
     get_brand,
@@ -45,7 +53,9 @@ const Pro_service = {
     get_details,
     final_order,
     getMax,
-    deleteMyAccount
+    deleteMyAccount,
+    pagination,
+    getOrders
 };
 
 export default Pro_service;

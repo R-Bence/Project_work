@@ -83,6 +83,7 @@ namespace Login
             }
             Button button = new Button();
             button.Text = "Hozzáadás";
+            button.FlatStyle = FlatStyle.Popup;
             button.Location = new System.Drawing.Point(10, labelY + 25);
             button.Click += push;
             Controls.Add(button);

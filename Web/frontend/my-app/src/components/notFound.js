@@ -5,6 +5,7 @@ const NoPage = () => {
     textAlign: "center",
     marginTop: "40vh",
     transform: "translateY(-50%)",
+    color : "red",
   };
 
   return (

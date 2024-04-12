@@ -5,6 +5,8 @@ var jwt = require("jsonwebtoken");
 var authconf = require("../db/authconfig")
 var authjwt = require("../middleware/authjwt");
 
+
+//Login
 router.post('/login', function(req, res,next){
     DB.select_user(req.body.email, req.body.password)
     .then(data => data[0])
@@ -22,19 +24,21 @@ router.post('/login', function(req, res,next){
     .catch(error => res.status(404).send(error));
 });
 
-
+//profil lekérés
 router.get('/userprofile', [authjwt.verifyToken],(req,res) =>{
     DB.get_user_profil(req.userParams.email) //Ez tartalmazza a token adatait
     .then(data => res.json(data))
     .catch( error => res.send(error))
 });
 
+//Registráció
 router.post('/registration', (req,res)=>{
     DB.reg_new_user(req.body)
     .then(data => res.send("Sikeres regisztráció"))
     .catch(error => res.send(error))
 })
 
+//Profile módosítás
 router.patch('/update', (req,res)=>{
     console.log(req.body)
     DB.update_user_prof(req.body)
@@ -51,6 +55,7 @@ router.patch('/update', (req,res)=>{
     .catch(error => res.send(error));
 })
 
+//Rendelés lekérés
 router.post('/orders', (req,res) =>{
     DB.getOrders(req.body.user_id)
     .then(
@@ -66,6 +71,7 @@ router.post('/orders', (req,res) =>{
     .catch(error => res.send(error));
 })
 
+//Fiók törlése
 router.delete('/delete/:userId', (req,res)=>{
     DB.deleteAccount(req.params.userId)
     .then(data => res.send(data))

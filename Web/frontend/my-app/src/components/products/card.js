@@ -9,7 +9,7 @@ import Popup from './focus_product';
 export default function Cards({ data, loggedIn, add_To_cart }) {
     const navigate = useNavigate('');
     const location = useLocation();
-    const [id, set_id] = useState('');
+    const [id, setId] = useState('');
 
     const [showPopup, setShowPopup] = useState(false);
 
@@ -33,7 +33,7 @@ export default function Cards({ data, loggedIn, add_To_cart }) {
     }, [location.search]);
 
     const handle_popup = (id) => {
-        set_id(id);
+        setId(id);
         setShowPopup(true);
         navigate(`/products/?id=${id}`);
         document.body.style.overflow = 'hidden';

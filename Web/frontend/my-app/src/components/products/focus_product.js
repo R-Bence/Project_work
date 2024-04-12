@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Services from '../../service/productService';
+import Services from '../../service/Service';
 import { useNavigate } from 'react-router-dom';
 import './product.scss';
 import { Carousel } from 'react-bootstrap';
@@ -43,7 +43,7 @@ export default function Popup({ add_To_cart, loggedIn, showPopup, setShowPopup, 
                     <div className='popup-inner row'>
                         <button className='pop-close-btn' onClick={() => {
                             setShowPopup(false);
-                            navigate('/products');
+                            navigate('/products/');
                             }}>X</button>
                         <div className='col-lg-6 col-md-11'>
                             <div className='container img-collection'>

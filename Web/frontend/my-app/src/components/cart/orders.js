@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import userService from '../../service/userService';
+import Service from '../../service/Service';
 import './order.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,7 +12,7 @@ export default function Order({ showPop, userId, setShowPop }) {
 
     const frissit = async () => {
         try {
-            const response = await userService.getOrders(userId);
+            const response = await Service.getOrders(userId);
             setData(response.data);
         } catch (error) {
             console.log(error.message);

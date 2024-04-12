@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import Services from '../../service/productService';
+import Services from '../../service/Service';
 import { useNavigate } from 'react-router-dom';
 import http from '../../service/http-common';
 import { setAuthHeader } from '../Reg_Log/profile';
@@ -168,11 +168,11 @@ export default function Cart({ userId,setUserId, loggedIn, set_cart }) {
                   }
                   <div className='d-grid'>
                   <label>Kártyaszám</label>
-                    <input type='number' onChange={(e)=>setCardNumber(e.target.value)}/>
+                    <input type='number' className='form-control' onChange={(e)=>setCardNumber(e.target.value)}/>
                     <label>CV kód</label>
-                    <input type='number' onChange={(e)=> setCV(e.target.value)}/>
+                    <input type='number' className='form-control' onChange={(e)=> setCV(e.target.value)}/>
                     <label>Kártya tulajdonossának neve</label>
-                    <input type='text' onChange={(e)=>setCardName(e.target.value)}/>
+                    <input type='text' className='form-control' onChange={(e)=>setCardName(e.target.value)}/>
                     <div className='pt-2'>
                       <label>Lejárati dátum(Hónap/Év)</label>
                       <span className='exDate-span'>

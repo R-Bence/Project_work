@@ -2,16 +2,22 @@ var express = require('express');
 var router = express.Router();
 var Db = require('../db/dboperations');
 
+//Összes termék lekérése
 router.get('/', (req, res) => {
     Db.allProduct()
         .then(data => res.json(data))
         .catch(error => res.send(error));
 });
 
+//infinity scroll
 router.get('/page/:pageNo', (req,res)=>{
     let oldal = Number(req.params.pageNo)
+    Db.selectProductPerPage(oldal)
+    .then(data => res.json(data))
+    .catch(error => res.send(error)) 
 })
 
+//Legdrágább termék ára
 router.get('/max', (req,res) =>{
     Db.GetMaxPrice()
     .then(data => res.json(data))
@@ -25,6 +31,7 @@ router.get('/brands', (req,res) =>{
     .catch(error => res.send(error))
 })
 
+//Termék részletes leírása
 router.get('/:id', (req,res) =>{
     console.log(req.params.id)
     Db.all_details(req.params.id)
@@ -47,6 +54,7 @@ router.post('/search', (req, res) => {
         .catch(error => res.send(error));
 });
 
+//Rendelés leadása
 router.put('/cart/rendel', (req, res) =>{
     let data = req.body;
     Db.order(data)

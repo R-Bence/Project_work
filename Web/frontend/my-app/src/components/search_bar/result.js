@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Db from '../../service/productService';
+import Service from '../../service/Service';
 import { Col, Row, Container } from 'react-bootstrap';
 import Searc_bar from '../search_bar/search';
 import Cards from '../products/card';
@@ -17,7 +17,7 @@ const Result = () => {
     })
 
     useEffect(()=>{
-        Db.postSearch(szures)
+        Service.postSearch(szures)
         .then(res => {
             setData(res.data);
             setLoading(false);

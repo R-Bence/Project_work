@@ -3,6 +3,7 @@ const sql = require("mysql");
 
 let pool = sql.createPool(config);
 
+//Összes termék
 async function allProduct() {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.get_products;', (error, elements) => {
@@ -14,6 +15,7 @@ async function allProduct() {
     });
 }
 
+//A legdrágább termék ára
 async function GetMaxPrice(){
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.get_max_price',(error, elements) =>{
@@ -27,6 +29,7 @@ async function GetMaxPrice(){
     })
 }
 
+//Részletes adatok egy termékhez
 async function all_details(id) {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.product_all_details where base_id = ?;',[id], (error, elements) => {
@@ -38,6 +41,7 @@ async function all_details(id) {
     });
 }
 
+//Összes márka
 async function all_brand() {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.brand;', (error, elements) => {
@@ -49,16 +53,20 @@ async function all_brand() {
     });
 }
 
-async function selectProductPerPage(pageNo){
-    return new Promise((resolve,reject) => {
-        pool.query('Select * from base order by id limit ? 10 '[(pageNo-1)*10], (error,elements)=>{
-            if(error){
-                return reject(error)
+//infinity scroll
+async function selectProductPerPage(pageNo) {
+    const offset = (pageNo - 1) * 10; 
+
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM mobil.get_products ORDER BY id LIMIT ?, 10', [offset], (error, elements) => {
+            if (error) {
+                return reject(error);
             }
-            return resolve(elements)
-        })
-    })
+            return resolve(elements);
+        });
+    });
 }
+
 
 //Lekéri a szürt adatokat
 async function select_search_data(fil) {
@@ -113,6 +121,7 @@ async function select_user(email, pass) {
     });
 }
 
+//user profile
 async function get_user_profil(email){
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.user WHERE mobil.user.user_email like ?',[email],(error, results) => {
@@ -126,6 +135,7 @@ async function get_user_profil(email){
     });
 }
 
+//Rendelések megtekintése
 async function getOrders(id){
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM mobil.rendel where user_id = ?;',id, (error, results)=>{
@@ -139,6 +149,7 @@ async function getOrders(id){
     })
 }
 
+//Regisztráció
 async function reg_new_user(data){
     return new Promise((resolve, reject) =>{
         pool.query('INSERT INTO mobil.user (user_email, user_tel, user_pass, user_type, postcode, city, street) values (?,?,SHA2(?,256),1, ?, ?, ?)',[data.email,data.number,data.pass,data.postcode, data.city, data.street], (error,results)=>{
@@ -152,6 +163,7 @@ async function reg_new_user(data){
     })
 }
 
+//profil módosítás
 async function update_user_prof(data) {
     return new Promise((resolve, reject) => {
         let sql = 'update mobil.user set ';
@@ -193,6 +205,7 @@ async function update_user_prof(data) {
     });
 };
 
+//Rendelés leadás
 async function order(data) {
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO `mobil`.`order` (`user_id`, `orderLocation`, `status`) VALUES (?, ?, 1)', [data.user_id, data.address], (error, results) => {
@@ -242,6 +255,7 @@ async function order(data) {
     });
 }
 
+//fiók törlése
 async function deleteAccount(id){
     return new Promise((resolve, reject) => {
         pool.query('DELETE FROM `mobil`.`user` WHERE user_id = ?',[id], (error, results)=>{

@@ -10,14 +10,13 @@ export default function Footer() {
                     <h4>Vedd fel bátran a kapcsolatot!</h4>
                     <p>Fedezze fel a MobilShop mobiltelefon webshopját, ahol prémium minőségű mobiltelefonok várnak.
                     Kiváló ügyfélszolgálatunk és gyors szállítás garantálja a zökkenőmentes vásárlási élményt.</p>
-                    <p>Email: bencerazso@gmail.com</p>
+                    <p>Email: mobilteszt@outlook.com</p>
                     <p>Telefonszám: +36 30 413 3523</p>
                 </div>
                 <div className="col-lg-4 col-xs-12">
                     <h4>MobilShop</h4>
                     <p><a href="">ÁSZF</a></p>
                     <p><a href="">Adatvédelem</a></p>
-                    <p><a href=""></a></p>
                 </div>
                 <div className="col-lg-4 col-xs-12">
                     <h4>Navigáció</h4>

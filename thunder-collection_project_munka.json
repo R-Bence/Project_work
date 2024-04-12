@@ -1,0 +1,255 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "project_munka",
+    "dateExported": "2024-04-12T09:44:20.252Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "57c0015d-81f4-4055-a7f9-4582dd76dfb9",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Products - ALL",
+            "url": "http://localhost:8080/products",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-01-31T07:36:40.402Z",
+            "modified": "2024-01-31T07:38:16.104Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ee4cac33-2b4c-44e5-8c16-c6cb68b5901d",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Products - Filtered",
+            "url": "http://localhost:8080/products/search",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-07T07:26:34.505Z",
+            "modified": "2024-03-01T08:49:42.735Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"brand\": \"apple\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dfca22ea-ed4b-45b8-8f31-d5ff8a45b018",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Products - advanced Search",
+            "url": "http://localhost:8080/products/search",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-13T11:55:12.708Z",
+            "modified": "2024-03-04T20:44:36.747Z",
+            "headers": [
+                {
+                    "name": "keyword",
+                    "value": "apple",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"brand\": \"apple\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "a67347de-ee49-4ed7-be51-194e4e1b6ae6",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "auth - login",
+            "url": "http://localhost:8080/auth/login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-02-14T08:04:29.114Z",
+            "modified": "2024-03-04T11:37:39.978Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2ceadc07-f56c-4a63-b968-a1fbac27336f",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "auth - user_profile",
+            "url": "http://localhost:8080/auth/userprofile",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-02-14T11:35:17.988Z",
+            "modified": "2024-04-07T14:20:42.221Z",
+            "headers": [
+                {
+                    "name": "x-access-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcxMjQ5OTYzMCwiZXhwIjoxNzEyNTAxNDMwfQ._YTtzVs_IsUtKkV1WgFDCwKDAbGT0CYdJB3KlOqbFwQ"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5a1eb761-5103-4a7d-afcf-ad89ab83ce08",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Registration",
+            "url": "http://localhost:8080/auth/registration",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-03-04T16:19:54.425Z",
+            "modified": "2024-04-09T10:35:16.592Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"asd@gmail.com\",\n  \"pass\": \"123\",\n  \"number\": \"0000\",\n  \"postcode\": \"1016\",\n  \"city\" : \"Budapest\",\n  \"street\": \"Aladár utca 10\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fa2963e7-7f0f-4f6f-8aba-f6ef3060764c",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "UPDATE profile",
+            "url": "http://localhost:8080/auth/update",
+            "method": "PUT",
+            "sortNum": 90000,
+            "created": "2024-03-04T17:28:33.535Z",
+            "modified": "2024-03-04T17:35:57.783Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 4,\n  \"name\": \"admin\",\n  \"pass\": 123\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7b757f97-dddb-442f-8ea7-398197b6567b",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Products - Get all brand",
+            "url": "http://localhost:8080/products/brands",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-03-04T20:57:06.597Z",
+            "modified": "2024-03-04T20:57:18.179Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "3a1cdcad-6061-44ab-af89-45a09c1285e4",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Details",
+            "url": "http://localhost:8080/products/1",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-03-05T15:45:13.724Z",
+            "modified": "2024-03-05T15:46:38.927Z",
+            "headers": [],
+            "params": [],
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "f736c4b3-6122-4ec8-b5f5-572786ecf948",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "User - Order",
+            "url": "http://localhost:8080/auth/orders",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-03-26T13:12:12.701Z",
+            "modified": "2024-03-26T17:13:37.436Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user_id\": 4\n}",
+                "form": []
+            },
+            "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "01c3a757-289b-4361-a8e7-760faff9905b",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Final Order",
+            "url": "http://localhost:8080/products/cart/rendel",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2024-03-29T16:03:46.087Z",
+            "modified": "2024-04-11T21:37:51.208Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"phone\": [\n    {\n      \"products\": {\n        \"base_id\": 2,\n        \"name\": \"iPhone 11\",\n        \"brand_name\": \"Apple\",\n        \"capacity\": 3100,\n        \"screen_size\": 6.1,\n        \"res_x\": 828,\n        \"res_y\": 1792,\n        \"ram\": 4,\n        \"storage\": 64,\n        \"rear_camera\": 12,\n        \"front_camera\": 12,\n        \"op_syst\": \"iOs\",\n        \"gpu_name\": \"Mali-G71 MP2\",\n        \"cpu_name\": \"Hexa-core (2x2.65 GHz Lightning + 4x1.8 GHz Thunder)\",\n        \"price\": 251600,\n        \"Darab\": 68\n      },\n      \"quantity\": 1\n    }\n  ],\n  \"address\": \"1016 Budapest Aladár utca 9\",\n  \"user_id\": 4\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c57a96ca-82db-4cf8-9072-1f30f1230da2",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "GetMax",
+            "url": "http://localhost:8080/products/max",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2024-04-11T08:05:21.008Z",
+            "modified": "2024-04-11T08:05:32.247Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "81828354-6538-46fa-866e-7cea0c872726",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Delete user profile",
+            "url": "http://localhost:8080/auth/delete/61",
+            "method": "DELETE",
+            "sortNum": 150000,
+            "created": "2024-04-11T20:56:24.049Z",
+            "modified": "2024-04-11T20:57:01.758Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e91f501c-db46-4342-b096-f84b477f1667",
+            "colId": "75554042-c7c0-4fa5-96dd-4109f4588ed3",
+            "containerId": "",
+            "name": "Pagination",
+            "url": "http://localhost:8080/products/page/1",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2024-04-11T23:19:45.585Z",
+            "modified": "2024-04-11T23:22:43.232Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
